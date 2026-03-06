@@ -1,0 +1,155 @@
+syntax = "proto3";
+
+package com.demo.java.xposed.rcs.hook.messages;
+
+message LookupRegisteredRequests {
+  TachyonRegistrationToken tachyonRegistrationToken = 1;
+  repeated PhoneNumber phone_number = 2;
+  int32 query_mode = 3;               // 必须有，兼容单号码模式
+  GroupLookupConf group_lookup_conf = 5;
+}
+
+message PhoneNumber {
+  int32 type = 1;
+  string number = 2;
+  string protocol = 3;                // 可选，部分数据中存在
+}
+
+message GroupLookupConf {
+  int32 mode = 1;
+}
+
+message TachyonRegistrationToken {
+  string refresh_request_id = 1;
+  string app_name = 3;
+  bytes oAuthToken = 6;
+  ClientInfo client_info = 7;
+  bytes blob2 = 9;
+  EbqfStruct ebqf = 10;
+  EihpStruct eihp = 16;
+  int32 some_flag = 202;               // 现在确认需要加上
+}
+
+message  ReceiveMessagesRequestsRpc {
+    TachyonRegistrationToken tachyonRegistrationToken =1;
+
+}
+
+message ClientInfo {
+  int32 build_date = 3;
+  int32 build_type = 4;
+  int32 channel = 7;
+  int32 env = 9;
+  string package_name = 10;
+}
+
+message EbqfStruct {
+  // 占位
+}
+
+message EihpStruct {
+  // 占位
+}
+
+
+message LookupRegisteredResposne {
+  Ebrn result_meta = 1;
+
+  // 已开通 RCS 的号码
+  repeated PhoneNumber rcs_enabled = 2;
+
+  // 未开通 RCS 的号码（也可能为空）
+  repeated PhoneNumber rcs_disabled = 3;
+
+  // 每个号码的响应信息
+  repeated Ebrz phone_item = 4;
+}
+
+// 查询元信息结构
+message Ebrn {
+  int64 responseRegistrationId = 2;                    // 比如 session ID 或时间戳
+  int64 field4 = 4;                    // 比如请求标识
+}
+
+
+// 每个查询响应项
+message Ebrz {
+  PhoneNumber phone_number = 1;        // 响应关联的号码
+  int32 status = 2;                    // 状态码，1=开通RCS，4=未开通
+  bytes raw_data = 3;                  // 原始能力信息（可选）
+  optional Profile profile = 5;        // 能力详情（开通才有）
+//  optional ProfileSummary summary = 6; // 简要信息
+  bytes summary_raw = 6;
+}
+
+// 能力详情结构
+message Profile {
+  string id = 1;
+  string data = 2;
+  ProfileKey key = 3;
+  bytes summary_raw = 5;
+  repeated Property properties = 6;
+  int64 timestamp = 7;
+}
+
+message ProfileKey {
+  int32 id = 1;
+  bytes signature = 2;
+}
+
+message ProfileSummary {
+  int32 value = 12;
+}
+
+// 通用属性结构
+message Property {
+  PropertyKey key = 1;
+  PropertyValue value = 2;
+}
+
+message PropertyKey {
+  string name = 1;
+}
+
+message PropertyValue {
+  string content = 1;
+}
+
+
+
+
+message ActionIdItem{
+
+  int32 idType = 1;
+  string id = 2;
+  string  msgType = 3;
+
+  GroupProperties groupProperties = 6;
+
+}
+message  GroupProperties{
+  GroupProperty groupProperty = 1;
+
+}
+
+message GroupProperty{
+  string key = 1;
+  int32 value = 2;
+
+}
+
+message ActionGroupUsersRequests{
+
+  TachyonRegistrationToken tachyonRegistrationToken = 1;
+  ActionIdItem actionIdItem = 2;
+  repeated PhoneNumber phone_number = 3;
+}
+
+
+
+message RcsConferenceProperties{
+  string  groupId = 1;
+  int32 conferenceType = 3;
+  string  countryCode = 4;
+}
+

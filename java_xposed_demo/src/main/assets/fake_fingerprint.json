@@ -1,0 +1,140 @@
+{
+  "info": {
+    "version": "1",
+    "product": "xiaoan"
+  },
+  "sim_info":   {
+    "iccId": "89441000304614049628",
+    "phoneNumber": "07423180769",
+    "simCountryIso": "us",
+    "simCountryIsoCode": "1",
+    "simOperator": "23415",
+    "carrierId": "2309",
+    "deviceId": "8651240351187333",
+    "mcc": "310",
+    "mnc": "240",
+    "simOperatorName": "Ultra",
+    "subscriberId": "234159358764981"
+  },
+  "real_sim_info": {
+  },
+  "apps": {
+    "jp.naver.line.android": {
+      "info": {
+        "version": "1",
+        "product": "xiaoan"
+      },
+      "sim_info": {
+        "carrierId": "1098",
+        "deviceId": "865124036763661",
+        "mcc": "520",
+        "simCountryIsoCode": "66",
+        "subscriberId": "520032107328329",
+        "iccId": "8966031931731362354f",
+        "mnc": "03",
+        "phoneNumber": "",
+        "simCountryIso": "th",
+        "simOperator": "52003",
+        "simOperatorName": "AIS"
+      },
+      "real_sim_info": {
+      }
+    },
+    "com.zing.zalo": {
+      "info": {
+        "version": "1",
+        "product": "xiaoan"
+      },
+      "sim_info": {
+        "deviceId": "865124034875551",
+        "iccId": "89840200011650397324",
+        "mnc": "02",
+        "simOperatorName": "Vinaphone",
+        "carrierId": "1300",
+        "mcc": "452",
+        "phoneNumber": "567469143",
+        "simCountryIso": "vn",
+        "simCountryIsoCode": "84",
+        "simOperator": "45202",
+        "subscriberId": "452021165039732"
+      },
+      "real_sim_info": {
+      }
+    }
+  },
+  "default": {
+    "device_profiles": [
+      {
+        "product": "1819",
+        "fingerprint": "vivo/1819/1819:9/PPR1.180610.011/compiler03041122:user/release-keys",
+        "id": "P00610",
+        "manufacturer": "vivo",
+        "hardware": "mt6771",
+        "tags": "release-keys",
+        "brand": "vivo",
+        "model": "vivo 1819",
+        "type": "user",
+        "display": "P00610 release-keys",
+        "radio": "unknown"
+      },
+      {
+        "product": "Opad14 pro Max",
+        "fingerprint": "Kdoce/Z8/Z8:10/QP1A.190711.020/12573:user/release-keys",
+        "id": "O11019",
+        "manufacturer": "Opad14 pro Max",
+        "hardware": "mt6755",
+        "tags": "release-keys",
+        "brand": "Origimo",
+        "model": "Opad14 pro Max",
+        "type": "user",
+        "display": "P30-X-LYX-P967-128-en-v02",
+        "radio": "unknown"
+      },
+      {
+        "product": "Opad14 Pro Max",
+        "fingerprint": "Origimo/Z8Pro/Z8Pro:12/SP1A.210812.016/21456:user/release-keys",
+        "id": "O13022",
+        "manufacturer": "Origimo",
+        "hardware": "mt6785",
+        "tags": "release-keys",
+        "brand": "Origimo",
+        "model": "Opad14 Pro Max",
+        "type": "user",
+        "display": "P40-X-LYX-P1024-256-en-v04",
+        "radio": "unknown"
+      }
+
+    ],
+    "android_versions": [
+      {
+        "sdk_int": 31,
+        "active_codenames": [],
+        "preview_sdk_fingerprint": "REL",
+        "first_sdk_int": 28,
+        "resources_sdk_int": 31,
+        "security_patch": "2023-01-05",
+        "base_os": "",
+        "preview_sdk_int": 0,
+        "release": "12",
+        "sdk": "31",
+        "codename": "REL",
+        "incremental": "18254790"
+      },
+      {
+        "sdk_int": 33,
+        "active_codenames": [
+        ],
+        "preview_sdk_fingerprint": "UPSIDE_DOWN_CAKE",
+        "first_sdk_int": 33,
+        "resources_sdk_int": 33,
+        "security_patch": "2024-03-01",
+        "base_os": "",
+        "preview_sdk_int": 1,
+        "release": "14",
+        "sdk": "33",
+        "codename": "UPSIDE_DOWN_CAKE",
+        "incremental": "24030501"
+      }
+    ]
+  }
+}

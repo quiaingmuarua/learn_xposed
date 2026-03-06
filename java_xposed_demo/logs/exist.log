@@ -1,0 +1,138 @@
+--------- beginning of main
+--------- beginning of system
+2025-11-13 16:07:01.397 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PrePNClientFunnelLogger/previous screen: phone_number_confirm_dialog/action taken: next/current screen: enter_number/event name: enter_number_next_clicked/is add account flow: false/client event ts: 1763021221397
+2025-11-13 16:07:01.398 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationAudioGuidanceViewModel/stopAudioGuidance
+2025-11-13 16:07:01.398 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:01.398 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:01.398 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationAudioGuidanceViewModel/stopAudioGuidanceInternal
+2025-11-13 16:07:01.399 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegisterPhone/checkforreinstall
+2025-11-13 16:07:01.399 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:01.399 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = InterAppCommunicationManager/migrateFromConsumerAppFlowEnabled/sibling-country-code = null
+2025-11-13 16:07:01.400 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = InterAppCommunicationManager/smbIsCapableOfMigratingFromConsumer=false
+2025-11-13 16:07:01.400 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = InterAppCommunicationManager/migrateFromConsumerAppFlowEnabled = false
+2025-11-13 16:07:01.400 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:01.402 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegisterPhone/reset-state
+2025-11-13 16:07:01.403 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = FunnelLogger/previous screen: enter_number/action taken: unknown/current screen: account_transfer_eligibility_check/client event ts: 1763021221403/is add account flow: false/event name: account_transfer_eligibility_check_started
+2025-11-13 16:07:01.403 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = ExistViewModel/startExistRequest
+2025-11-13 16:07:01.403 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = ExistViewModel/canceling exist request
+2025-11-13 16:07:01.403 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:01.403 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:01.404 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/shouldFetchPreChatdABProps
+2025-11-13 16:07:01.404 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:01.404 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:01.404 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:01.404 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:01.405 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:01.405 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:01.405 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/checkPreChatdABProps/wamsys/reg-onboard-abprop-request
+2025-11-13 16:07:01.405 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:01.406 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:01.407 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:01.407 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:01.407 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:01.408 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:01.408 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:01.412 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:01.412 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:01.412 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:01.412 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:01.423 CoreBackPreview         system_server                        D  Window{9da2c6c u0 com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@c73a358, mPriority=0}
+2025-11-13 16:07:01.430 OpenGLRenderer          com.whatsapp                         E  Unable to match the desired swap behavior.
+2025-11-13 16:07:01.433 Parcel                  com.whatsapp                         W  Expecting binder but got null!
+2025-11-13 16:07:01.814 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WamsysRegistrationWrapper/pre_pn/send-funnel-log/status/1/failureReason/0
+2025-11-13 16:07:01.815 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WamsysRegistrationWrapper/send-funnel-log/status/1/failureReason/0
+2025-11-13 16:07:02.022 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PreChatdAbPropsFetcher/fetchPreChatdABProps/success
+2025-11-13 16:07:02.023 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/updatePreChatdABProps
+2025-11-13 16:07:02.141 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:02.141 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:02.153 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber
+2025-11-13 16:07:02.153 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getBackupTokenFromLocalFile/no content found
+2025-11-13 16:07:02.153 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber
+2025-11-13 16:07:02.153 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber/no data read from backup_token file
+2025-11-13 16:07:02.154 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber
+2025-11-13 16:07:02.154 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber
+2025-11-13 16:07:02.154 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber/LRUCache size is 1
+2025-11-13 16:07:02.154 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BackupTokenUtils/getTokenByPhoneNumber/no token saved for this phone number
+2025-11-13 16:07:02.155 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/checkIfExists/null clientCapabilities
+2025-11-13 16:07:02.244 JavaBinder              com.whatsapp                         W  BinderProxy is being destroyed but the application did not call unlinkToDeath to unlink all of its death recipients beforehand.  Releasing leaked death recipient: X.IHT
+2025-11-13 16:07:02.244 BpBinder                com.whatsapp                         I  onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+2025-11-13 16:07:02.249 System                  com.whatsapp                         W  A resource failed to call close.
+2025-11-13 16:07:02.267 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = memanager/getoldme
+2025-11-13 16:07:02.268 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] StandardIntegrity : requestExpressIntegrityToken(5053430299330730224)
+2025-11-13 16:07:02.268 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] StandardIntegrity : Initiate binding to the service.
+2025-11-13 16:07:02.275 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] StandardIntegrity : ServiceConnectionImpl.onServiceConnected(ComponentInfo{com.android.vending/com.google.android.finsky.expressintegrityservice.ExpressIntegrityService})
+2025-11-13 16:07:02.275 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] StandardIntegrity : linkToDeath
+2025-11-13 16:07:02.280 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] OnRequestIntegrityTokenCallback : onRequestExpressIntegrityToken
+2025-11-13 16:07:02.280 PlayCore                com.whatsapp                         I  UID: [10278]  PID: [25360] StandardIntegrity : Unbind from service.
+2025-11-13 16:07:02.352 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:02.352 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:02.385 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:02.385 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:02.385 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:02.385 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:03.689 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = GCM push received; id=RegistrationVerification; ip=null; sessionId = null; fbips=null; unblockingProps=null; notifyOnFailure=false; routingInfo=null; pushTs=1763021244264; pushTransport=0; originalPriority=2; deliveredPriority=2; pushNonce is empty=true; has encPayload=false; pushProvider=0; providerSentTime=1763021244285
+2025-11-13 16:07:03.690 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = IncomingPushHandler/handlePush Skipping finalFbips processing. finalFbips: null
+2025-11-13 16:07:03.690 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = IncomingPushHandler/handlePush Skipping finalUnblockingProps processing. finalUnblockingProps: null
+2025-11-13 16:07:03.693 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = messageservice/startOnForeground success
+2025-11-13 16:07:03.693 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = [WAFFLE] WfacBanIncomingPushObserver/shouldHandlePush
+2025-11-13 16:07:03.694 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationManager/handleRegistrationVerificationNotification
+2025-11-13 16:07:04.076 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/exist entrypoint response/autoconfType=1/autoconfCfType=1/non-null serverStartMessage=false/waOldEligible=2/emailOtpEligible=0/flashType=1/resetMethod=null/wipeWait=-1/smsWait=0/voiceWait=0/waOldWait=0/emailOtpWait=-1/retryAfter=-1/silentAuthEligible=0/regMethodsOrder=[passkey, wa_old, email_otp, flash, sms, voice]/carrierSilentAuthEligible=-1
+2025-11-13 16:07:04.077 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/checklists passkey credential is null
+2025-11-13 16:07:04.077 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/updatePreferencesFromResult/setLidBlocklistMigratedRegistrationFlag=false
+2025-11-13 16:07:04.077 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = CheckIfReinstalledTask/possible-migration/false
+2025-11-13 16:07:04.078 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = ExistRepository/onExistCheckResponse
+2025-11-13 16:07:04.079 CoreBackPreview         system_server                        D  Window{9da2c6c u0 com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone}: Setting back callback null
+2025-11-13 16:07:04.082 InputManager-JNI        system_server                        W  Input channel object '9da2c6c com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone (client)' was disposed without first being removed with the input manager!
+2025-11-13 16:07:04.093 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = FunnelLogger/previous screen: enter_number/action taken: fail/current screen: account_transfer_eligibility_check/client event ts: 1763021224093/is add account flow: false/event name: account_transfer_eligibility_check_completed
+2025-11-13 16:07:04.094 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:04.094 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = EnterPhoneNumber/new-installation
+2025-11-13 16:07:04.094 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:04.094 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegisterPhoneonNewInstall
+2025-11-13 16:07:04.094 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = VerifyPhoneNumberPrefs/saveRequestCodeRetryTime/method=sms/endTimeInMs=1763021224094
+2025-11-13 16:07:04.095 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = VerifyPhoneNumberPrefs/saveRequestCodeRetryTime/method=voice/endTimeInMs=1763021224094
+2025-11-13 16:07:04.095 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = VerifyPhoneNumberPrefs/saveRequestCodeRetryTime/method=wa_old/endTimeInMs=1763021224094
+2025-11-13 16:07:04.095 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = VerifyPhoneNumberPrefs/saveRequestCodeRetryTime/method=email_otp/endTimeInMs=1763021223094
+2025-11-13 16:07:04.095 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = VerifyPhoneNumberPrefs/saveRequestCodeRetryTime/method=send_sms/endTimeInMs=1763021224094
+2025-11-13 16:07:04.096 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyFunnelLogger/passkeyLoginEvent/currentScreen=enter_number/eventName=passkey_eligibility_check/actionType=noneerrorType=null/errorReason=null
+2025-11-13 16:07:04.097 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyGooglePlayChecks / googlePlayServicesStatus : DAA{statusCode=SUCCESS, resolution=null, message=null}
+2025-11-13 16:07:04.097 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyGooglePlayChecks / isGooglePlayServicesEnabled : true
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyGooglePlayChecks / determineDeviceGMSVersionCode:  254334029
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyGooglePlayChecks / gmsVersionIsNewEnoughForLogin : true
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyGooglePlayChecks / determineDeviceGMSVersionCode:  254334029
+2025-11-13 16:07:04.098 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = PasskeyViewModel/isPasskeyEnabled/eligibility=ENABLED
+2025-11-13 16:07:04.099 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegisterPhone/dialog/num_confirm
+2025-11-13 16:07:04.099 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = FunnelLogger/previous screen: account_transfer_eligibility_check/action taken: view/current screen: phone_number_confirm_dialog/client event ts: 1763021224099/is add account flow: false/event name: phone_number_confirm_dialog_landing
+2025-11-13 16:07:04.100 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:04.100 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:04.101 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg
+2025-11-13 16:07:04.101 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WaMsysSetup/bootstrapForReg/already bootstrapped, skip
+2025-11-13 16:07:04.103 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:04.103 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:04.103 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:04.104 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:04.104 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:04.104 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = verifynumber/getphonennumber/permission denied
+2025-11-13 16:07:04.104 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:04.105 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = RegistrationHttpManager/addCommonFieldStatParams/releaseChannel=RELEASE
+2025-11-13 16:07:04.109 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:04.109 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:04.110 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:04.110 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:04.113 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = resolving v.whatsapp.net
+2025-11-13 16:07:04.114 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(556)=>[I] http/task/regular/create/start
+2025-11-13 16:07:04.114 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(591)=>[I] http/task/regular/create/execute
+2025-11-13 16:07:04.114 msys                    com.whatsapp                         E  E[N WCIHTTPImplNetworkSession]WCIHTTPTaskImplCreateRegular(614)=>[I] http/task/regular/create/success
+2025-11-13 16:07:04.120 CoreBackPreview         system_server                        D  Window{236df00 u0 com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@eaaeb2c, mPriority=0}
+2025-11-13 16:07:04.139 OpenGLRenderer          com.whatsapp                         E  Unable to match the desired swap behavior.
+2025-11-13 16:07:04.145 Parcel                  com.whatsapp                         W  Expecting binder but got null!
+2025-11-13 16:07:04.146 TextView                com.whatsapp                         W  onProvideContentCaptureStructure(): calling assumeLayout()
+2025-11-13 16:07:04.147 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = app/dt/set com.whatsapp.registration.app.phonenumberentry.RegisterPhone@6e81c7d
+2025-11-13 16:07:04.147 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = app/dt/set done
+2025-11-13 16:07:04.154 CoreBackPreview         system_server                        D  Window{14a25ae u0 com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@65f3ed7, mPriority=0}
+2025-11-13 16:07:04.155 CoreBackPreview         system_server                        D  Window{14a25ae u0 com.whatsapp/com.whatsapp.registration.app.phonenumberentry.RegisterPhone}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@cfd73c4, mPriority=0}
+2025-11-13 16:07:04.373 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WamsysRegistrationWrapper/send-funnel-log/status/1/failureReason/0
+2025-11-13 16:07:04.374 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WamsysRegistrationWrapper/send-funnel-log/status/1/failureReason/0
+2025-11-13 16:07:04.374 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = BaseFunnelLogger/previous_screen: enter_number/action_taken: none/current_screen: enter_number/event_name: passkey_eligibility_check/client_metrics: {"GMSVersion":254334029}/reg_client_event_ts: 1763021224099
+2025-11-13 16:07:04.599 java_xposed_demo_part0  com.whatsapp                         E  Log.i  = WamsysRegistrationWrapper/send-funnel-log/status/1/failureReason/0

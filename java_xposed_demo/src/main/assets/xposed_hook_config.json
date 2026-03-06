@@ -1,0 +1,5 @@
+{
+  "messages":["TelephonyHook","RcsApplicationHook","RegisterHook","SmsMessageHook"],
+  "gms":["TelephonyHook"]
+
+}

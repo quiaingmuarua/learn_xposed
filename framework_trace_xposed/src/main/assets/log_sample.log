@@ -1,0 +1,10 @@
+{"ts":"09:46:32.394","up":669868,"pid":9437,"tid":2,"tname":"main","point":"entry/loadPackage","msg":"pkg=com.example.javademo proc=com.example.javademo pid=9437 uid=10288 sdk=34 units=1"}
+{"ts":"09:46:32.400","up":669874,"pid":9437,"tid":2,"tname":"main","point":"hook/installed","msg":"ActivityHooks installed"}
+{"ts":"09:46:32.401","up":669875,"pid":9437,"tid":2,"tname":"main","point":"entry/unitOk","msg":"ActivityHooks dt=5ms"}
+{"ts":"09:46:32.423","up":669897,"pid":9437,"tid":2,"tname":"main","point":"actthread/handleLaunchActivity","stage":"app/launch","attrs":{"comp":"com.example.javademo/.MainActivity"}}
+{"ts":"09:46:32.446","up":669920,"pid":9437,"tid":2,"tname":"main","point":"inst/callActivityOnCreate","stage":"app/lifecycle","attrs":{"activity":"com.example.javademo.MainActivity"}}
+{"ts":"09:46:34.120","up":671594,"pid":9437,"tid":2,"tname":"main","point":"act/execStartActivity","trace":"000d4fab","stage":"app/start","attrs":{"comp":"com.example.javademo/.scoreRecord.ScoreRecordActivity","req":-1,"opts":0,"flags":0}}
+{"ts":"09:46:34.121","up":671595,"pid":1877,"tid":298,"tname":"binder:1877_1F","point":"atms/startActivity","trace":"000d4fab","stage":"sys/start","attrs":{"method":"startActivity","uid":10288,"pid":9437,"comp":"com.example.javademo/.scoreRecord.ScoreRecordActivity","flags":0}}
+{"ts":"09:46:34.121","up":671595,"pid":1877,"tid":298,"tname":"binder:1877_1F","point":"atms/startActivityAsUser","trace":"000d4fab","stage":"sys/start","attrs":{"method":"startActivityAsUser","uid":10288,"pid":9437,"comp":"com.example.javademo/.scoreRecord.ScoreRecordActivity","flags":0}}
+{"ts":"09:46:34.135","up":671609,"pid":9437,"tid":2,"tname":"main","point":"actthread/handleLaunchActivity","trace":"000d4fab","stage":"app/launch","attrs":{"comp":"com.example.javademo/.scoreRecord.ScoreRecordActivity"}}
+{"ts":"09:46:34.140","up":671614,"pid":9437,"tid":2,"tname":"main","point":"inst/callActivityOnCreate","trace":"000d4fab","stage":"app/lifecycle","attrs":{"activity":"com.example.javademo.scoreRecord.ScoreRecordActivity"}}
