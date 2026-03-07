@@ -8,6 +8,7 @@ pluginManagement {
             name "aliyunGoogle"
             url "https://maven.aliyun.com/repository/google"
         }
+        maven { url "https://nexus.iinti.cn/repository/maven-public/" }
         gradlePluginPortal()
 //        google()
         mavenCentral()
@@ -15,14 +16,25 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven {
+            name "aliyunmaven"
+            url "https://maven.aliyun.com/repository/public"
+        }
+        maven { url "https://nexus.iinti.cn/repository/maven-public/" }
+        maven {
+            name "aliyunGoogle"
+            url "https://maven.aliyun.com/repository/google"
+        }
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "leanr_xposed_demo"
+
+
+
+rootProject.name = "learn_xposed"
 include ':app'
 include ':java_xposed_demo'
 include ':sekiro_client_demo'
