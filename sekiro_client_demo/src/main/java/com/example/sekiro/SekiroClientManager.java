@@ -2,22 +2,25 @@ package com.example.sekiro;
 
 import android.content.Context;
 
-import com.example.sekiro.telegram.ImportContactsSekiroActionHandler;
-import com.example.sekiro.telegram.ResolvePhoneActionHandler;
+import com.example.sekiro.telegram.TelegramSekiroActions;
 import com.example.sekiro.util.SekiroUtil;
-
-import java.util.Arrays;
 
 public class SekiroClientManager {
 
+    public static void initClient(Context context, String targetApp) {
+        ClassLoader classLoader = context.getClassLoader();
 
-    public static void initClient(Context mContext,String targetApp) {
-        ClassLoader mLoader = mContext.getClassLoader();
         if ("telegram".equals(targetApp)) {
-            SekiroUtil.init("telegram", mContext, Arrays.asList(new ResolvePhoneActionHandler(mContext, mLoader), new ImportContactsSekiroActionHandler(mContext, mLoader)));
-
+            SekiroUtil.init(
+                    "telegram",
+                    context,
+                    TelegramSekiroActions.createHandlers(context, classLoader)
+            );
         }
 
+        // 后续扩展
+        // if ("whatsapp".equals(targetApp)) {
+        //     SekiroUtil.init("whatsapp", context, WhatsappSekiroActions.createHandlers(context, classLoader));
+        // }
     }
-
 }
