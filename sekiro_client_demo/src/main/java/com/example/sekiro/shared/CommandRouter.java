@@ -2,6 +2,7 @@ package com.example.sekiro.shared;
 
 
 import com.example.sekiro.util.SimpleLogUtils;
+
 import org.json.JSONObject;
 
 import java.util.Arrays;

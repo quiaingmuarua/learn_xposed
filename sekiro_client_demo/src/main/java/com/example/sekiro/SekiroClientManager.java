@@ -3,7 +3,7 @@ package com.example.sekiro;
 import android.content.Context;
 
 import com.example.sekiro.telegram.TelegramSekiroActions;
-import com.example.sekiro.util.SekiroUtil;
+import com.example.sekiro.client.SekiroUtil;
 
 public class SekiroClientManager {
 

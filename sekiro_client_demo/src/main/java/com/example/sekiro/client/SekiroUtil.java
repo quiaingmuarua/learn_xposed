@@ -1,9 +1,11 @@
-package com.example.sekiro.util;
+package com.example.sekiro.client;
 
-import static com.example.sekiro.telegram.base.SekiroLambda.action;
+import static com.example.sekiro.client.SekiroLambda.action;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+
+import com.example.sekiro.util.SimpleLogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +14,6 @@ import java.util.UUID;
 import cn.iinti.sekiro3.business.api.SekiroClient;
 import cn.iinti.sekiro3.business.api.interfaze.ActionHandler;
 import cn.iinti.sekiro3.business.api.interfaze.HandlerRegistry;
-import cn.iinti.sekiro3.business.api.interfaze.SekiroRequest;
-import cn.iinti.sekiro3.business.api.interfaze.SekiroResponse;
 
 public class SekiroUtil {
     private static volatile SekiroClient client;

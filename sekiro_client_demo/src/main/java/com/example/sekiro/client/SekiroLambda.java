@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram.base;
+package com.example.sekiro.client;
 
 import com.example.sekiro.util.SimpleLogUtils;
 
