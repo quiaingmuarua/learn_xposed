@@ -1,22 +1,24 @@
 package com.example.sekiro.telegram;
 
-import com.example.sekiro.messages.shared.CommandException;
-
-import com.example.sekiro.messages.shared.ErrorCode;
 import com.example.sekiro.messages.core.CommandRouter;
-import com.example.sekiro.telegram.command.ImportContactsHandler;
+import com.example.sekiro.messages.shared.CommandException;
+import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.sekiro.telegram.base.TelegramRequestFactory;
+import com.example.sekiro.telegram.base.TelegramRequestParams;
+import com.example.sekiro.telegram.base.TelegramRpcExecutor;
 import com.example.sekiro.telegram.command.ImportContactsRequest;
-import com.example.sekiro.telegram.command.ResolvePhoneHandler;
 import com.example.sekiro.telegram.command.ResolvePhoneRequest;
+
+import com.example.sekiro.telegram.command.TelegramCommandRequest;
 import com.example.sekiro.telegram.model.ImportContactItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public final class TelegramCommandRegistry {
 
@@ -27,17 +29,56 @@ public final class TelegramCommandRegistry {
     private TelegramCommandRegistry() {
     }
 
+    @FunctionalInterface
+    private interface JsonResolver<T> {
+        T resolve(JSONObject json);
+    }
+
+    @FunctionalInterface
+    private interface TelegramApiRequestBuilder<T> {
+        Object build(T request, TelegramRequestFactory requestFactory) throws Exception;
+    }
+
     public static void registerAll() {
-        CommandRouter.register(
+        registerTelegram(
                 "resolvePhone",
-                new ResolvePhoneHandler(),
-                TelegramCommandRegistry::resolvePhoneResolver
+                TelegramCommandRegistry::resolvePhoneResolver,
+                request -> "phone=" + request.getPhone(),
+                (request, factory) -> factory.createResolvePhoneRequest(request.getPhone())
         );
 
-        CommandRouter.register(
+        registerTelegram(
                 "importContacts",
-                new ImportContactsHandler(),
-                TelegramCommandRegistry::importContactsResolver
+                TelegramCommandRegistry::importContactsResolver,
+                request -> "size=" + request.getContacts().size(),
+                (request, factory) -> factory.createImportContactsRequest(request.getContacts())
+        );
+    }
+
+    private static <T extends TelegramCommandRequest> void registerTelegram(
+            String actionName,
+            JsonResolver<T> resolver,
+            Function<T, String> logSuffixBuilder,
+            TelegramApiRequestBuilder<T> apiRequestBuilder
+    ) {
+        CommandRouter.register(
+                actionName,
+                (request, context) -> {
+                    TelegramRequestFactory requestFactory = context.require(TelegramRequestFactory.class);
+                    TelegramRpcExecutor rpcExecutor = context.require(TelegramRpcExecutor.class);
+
+                    TelegramRequestParams params = new TelegramRequestParams(
+                            actionName,
+                            logSuffixBuilder.apply(request),
+                            request.getTimeoutMs()
+                    );
+
+                    return rpcExecutor.executeSync(
+                            params,
+                            () -> apiRequestBuilder.build(request, requestFactory)
+                    );
+                },
+                resolver::resolve
         );
     }
 

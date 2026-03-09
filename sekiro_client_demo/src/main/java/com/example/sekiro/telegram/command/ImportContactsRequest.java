@@ -4,8 +4,8 @@ import com.example.sekiro.telegram.model.ImportContactItem;
 
 import java.util.List;
 
-public class ImportContactsRequest {
-    private final java.util.List<ImportContactItem> contacts;
+public class ImportContactsRequest implements TelegramCommandRequest {
+    private final List<ImportContactItem> contacts;
     private final long timeoutMs;
 
     public ImportContactsRequest(List<ImportContactItem> contacts, long timeoutMs) {
@@ -17,6 +17,7 @@ public class ImportContactsRequest {
         return contacts;
     }
 
+    @Override
     public long getTimeoutMs() {
         return timeoutMs;
     }

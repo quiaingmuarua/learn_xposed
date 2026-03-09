@@ -85,7 +85,7 @@ public class SekiroUtil {
         List<ActionHandler> handlers = new ArrayList<>();
 
         handlers.add(action("version", (req, resp) -> {
-            resp.success("2.0");
+            resp.success("3.0");
         }));
 
         handlers.add(action("info", (req, resp) -> {

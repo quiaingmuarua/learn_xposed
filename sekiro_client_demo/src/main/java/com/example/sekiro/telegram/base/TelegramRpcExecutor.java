@@ -16,18 +16,18 @@ public class TelegramRpcExecutor {
     }
 
     public String executeSync(
-            String actionName,
-            String logSuffix,
-            long timeoutMs,
+            TelegramRequestParams params,
             RpcRequestSupplier supplier
     ) throws Exception {
-        String prefix = "[" + actionName + "]";
-        String extra = (logSuffix == null || logSuffix.trim().isEmpty()) ? "" : ", " + logSuffix;
+        String prefix = "[" + params.getActionName() + "]";
+        String extra = (params.getLogSuffix() == null || params.getLogSuffix().trim().isEmpty())
+                ? ""
+                : ", " + params.getLogSuffix();
 
         SimpleLogUtils.show(prefix + " start" + extra);
 
         Object request = supplier.get();
-        String resultJson = rpcInvoker.sendRequestSync(request, timeoutMs);
+        String resultJson = rpcInvoker.sendRequestSync(request, params.getTimeoutMs());
 
         SimpleLogUtils.show(prefix + " success" + extra);
         return resultJson;
