@@ -1,5 +1,6 @@
 package com.example.sekiro.telegram.base;
 
+import com.example.sekiro.messages.shared.CommandContext;
 import com.example.sekiro.telegram.model.ImportContactItem;
 
 import java.lang.reflect.Field;
@@ -8,9 +9,10 @@ import java.util.List;
 
 public class TelegramRequestFactory {
 
-    private final TelegramEnv env;
+    private final CommandContext env;
 
-    public TelegramRequestFactory(TelegramEnv env) {
+
+    public TelegramRequestFactory(CommandContext env) {
         this.env = env;
     }
 

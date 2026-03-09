@@ -4,7 +4,7 @@ import static com.example.sekiro.telegram.client.SekiroLambda.action;
 
 import android.content.Context;
 
-import com.example.sekiro.telegram.base.TelegramEnv;
+import com.example.sekiro.messages.shared.CommandContext;
 import com.example.sekiro.telegram.base.TelegramRequestFactory;
 import com.example.sekiro.telegram.base.TelegramResponseSerializer;
 import com.example.sekiro.telegram.base.TelegramRpcExecutor;
@@ -32,10 +32,10 @@ public final class TelegramSekiroActions {
     }
 
     public static List<ActionHandler> createHandlers(Context context, ClassLoader classLoader) {
-        TelegramEnv env = new TelegramEnv(classLoader);
+        CommandContext.init(context);
         TelegramResponseSerializer serializer = new TelegramResponseSerializer();
-        TelegramRequestFactory requestFactory = new TelegramRequestFactory(env);
-        TelegramRpcInvoker rpcInvoker = new TelegramRpcInvoker(env, serializer);
+        TelegramRequestFactory requestFactory = new TelegramRequestFactory(CommandContext.getInstance());
+        TelegramRpcInvoker rpcInvoker = new TelegramRpcInvoker(CommandContext.getInstance(), serializer);
         TelegramRpcExecutor rpcExecutor = new TelegramRpcExecutor(rpcInvoker);
 
         return Arrays.asList(

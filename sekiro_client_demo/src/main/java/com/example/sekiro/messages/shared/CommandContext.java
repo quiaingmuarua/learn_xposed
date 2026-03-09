@@ -18,8 +18,19 @@ public class CommandContext {
     private  Context context;
 
 
-    public static void initMessagesContext(Context context) {
+    public static void init(Context context) {
         INSTANCE.context = context;
+    }
+
+
+    public ClassLoader getClassLoader() {
+        return context.getClassLoader();
+    }
+
+
+
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
+        return context.getClassLoader().loadClass(name);
     }
 
 

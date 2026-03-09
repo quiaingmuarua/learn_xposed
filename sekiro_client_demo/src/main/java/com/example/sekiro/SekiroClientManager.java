@@ -17,10 +17,5 @@ public class SekiroClientManager {
                     TelegramSekiroActions.createHandlers(context, classLoader)
             );
         }
-
-        // 后续扩展
-        // if ("whatsapp".equals(targetApp)) {
-        //     SekiroUtil.init("whatsapp", context, WhatsappSekiroActions.createHandlers(context, classLoader));
-        // }
     }
 }

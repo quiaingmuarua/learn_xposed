@@ -122,7 +122,7 @@ public class RcsApplicationHook extends BaseAppHook {
             appVersion = appVersion(mContext);
             LogUtils.show("MainActivity 拿到appVersion= " + appVersion);
             getSharedPreferences(mContext);
-            CommandContext.initMessagesContext(mContext);
+            CommandContext.init(mContext);
             CacheUtils.checkAndRecordLaunchTime(mContext);
 //            initWebSocket(mContext,mLoader);
             processHook(loadPackageParam, appVersion);

@@ -2,6 +2,7 @@ package com.example.sekiro.telegram.base;
 
 
 
+import com.example.sekiro.messages.shared.CommandContext;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import java.lang.reflect.Method;
@@ -10,14 +11,16 @@ import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import de.robv.android.xposed.XposedHelpers;
+
 public class TelegramRpcInvoker {
 
     private static final ConcurrentMap<String, PendingRequest> PENDING_MAP = new ConcurrentHashMap<>();
 
-    private final TelegramEnv env;
+    private final CommandContext env;
     private final TelegramResponseSerializer serializer;
 
-    public TelegramRpcInvoker(TelegramEnv env, TelegramResponseSerializer serializer) {
+    public TelegramRpcInvoker(CommandContext env, TelegramResponseSerializer serializer) {
         this.env = env;
         this.serializer = serializer;
     }
@@ -116,7 +119,7 @@ public class TelegramRpcInvoker {
     private Object getConnectionsManager() throws Exception {
         Class<?> cmCls = env.loadClass("org.telegram.tgnet.ConnectionsManager");
         Method getInstance = cmCls.getMethod("getInstance", int.class);
-        return getInstance.invoke(null, env.getCurrentAccount());
+        return getInstance.invoke(null, getCurrentAccount(env.getClassLoader()));
     }
 
     private Method findSendRequestMethod() throws Exception {
@@ -169,5 +172,11 @@ public class TelegramRpcInvoker {
         } catch (Throwable t) {
             return "parse telegram error failed: " + t.getMessage();
         }
+    }
+
+
+    public int getCurrentAccount(ClassLoader classLoader) throws ClassNotFoundException {
+        Class<?> userConfigClass = classLoader.loadClass("org.telegram.messenger.UserConfig");
+        return XposedHelpers.getStaticIntField(userConfigClass, "selectedAccount");
     }
 }
