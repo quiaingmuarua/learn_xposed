@@ -6,7 +6,7 @@ import com.demo.java.xposed.device.model.MessageCoreDataModel;
 import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
 import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.cache.XposedClassCacher;
+import com.example.messages.cache.XposedClassCacher;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;

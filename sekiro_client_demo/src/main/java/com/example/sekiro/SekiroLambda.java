@@ -1,6 +1,6 @@
 package com.example.sekiro;
 
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import cn.iinti.sekiro3.business.api.interfaze.ActionHandler;
 import cn.iinti.sekiro3.business.api.interfaze.SekiroRequest;

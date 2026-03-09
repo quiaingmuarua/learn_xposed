@@ -1,7 +1,7 @@
 package com.demo.java.xposed.app.telegram;
 
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.telegram.base.TelegramResponseSerializer;
+import com.example.telegram.base.TelegramResponseSerializer;
 
 import java.util.Arrays;
 

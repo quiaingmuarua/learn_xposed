@@ -7,11 +7,11 @@ import android.text.TextUtils;
 import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
 import com.demo.java.xposed.rcs.hook.messages.Rcs;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.cache.XposedClassCacher;
-import com.example.sekiro.messages.GrpcCallSender;
-import com.example.sekiro.messages.ChannelRequestParams;
-import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-import com.example.sekiro.messages.cache.CachedGroupInfo;
+import com.example.messages.cache.XposedClassCacher;
+import com.example.messages.GrpcCallSender;
+import com.example.messages.ChannelRequestParams;
+import com.example.messages.model.XpGrpcMethodEnum;
+import com.example.messages.cache.CachedGroupInfo;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
 

@@ -14,7 +14,7 @@ import com.demo.java.xposed.device.PluginInit;
 import com.demo.java.xposed.device.model.SimInfoModel;
 import com.demo.java.xposed.rcs.SimInfoFingerPrint;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
-import com.example.sekiro.messages.GrpcCallSender;
+import com.example.messages.GrpcCallSender;
 
 import com.demo.java.xposed.rcs.hook.gms.SmsMessageHook;
 import com.demo.java.xposed.rcs.hook.messages.AutoRegisterHook;
@@ -38,7 +38,7 @@ import com.demo.java.xposed.utils.CacheUtils;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
 import com.demo.java.xposed.utils.ReliableWebSocketClient;
-import com.example.sekiro.messages.cache.XposedClassCacher;
+import com.example.messages.cache.XposedClassCacher;
 import com.example.command.core.CommandContext;
 import com.google.gson.Gson;
 

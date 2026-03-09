@@ -3,12 +3,11 @@ package com.example.sekiro;
 import android.content.Context;
 
 import com.example.command.core.CommandContext;
-import com.example.sekiro.telegram.TelegramCommandRegistry;
-import com.example.sekiro.telegram.TelegramSekiroActions;
-import com.example.sekiro.telegram.TelegramRequestFactory;
-import com.example.sekiro.telegram.base.TelegramResponseSerializer;
-import com.example.sekiro.telegram.base.TelegramRpcExecutor;
-import com.example.sekiro.telegram.base.TelegramRpcInvoker;
+import com.example.telegram.TelegramCommandRegistry;
+import com.example.telegram.TelegramRequestFactory;
+import com.example.telegram.base.TelegramResponseSerializer;
+import com.example.telegram.base.TelegramRpcExecutor;
+import com.example.telegram.base.TelegramRpcInvoker;
 
 public class SekiroClientManager {
 
@@ -35,7 +34,7 @@ public class SekiroClientManager {
 
         TelegramCommandRegistry.registerAll();
 
-        SekiroUtil.init(
+        SekiroClientInit.init(
                 "telegram",
                 context,
                 TelegramSekiroActions.createHandlers()

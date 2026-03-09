@@ -10,8 +10,8 @@ import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
 import com.demo.java.xposed.rcs.model.SendMsgKeyInfo;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.collection.StringUtils;
-import com.example.sekiro.messages.cache.XposedClassCacher;
-import com.example.sekiro.messages.cache.CachedGroupInfo;
+import com.example.messages.cache.XposedClassCacher;
+import com.example.messages.cache.CachedGroupInfo;
 import com.google.protobuf.util.JsonFormat;
 
 import de.robv.android.xposed.XC_MethodHook;

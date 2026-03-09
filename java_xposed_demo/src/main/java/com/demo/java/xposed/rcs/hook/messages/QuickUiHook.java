@@ -7,7 +7,7 @@ import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
 import com.demo.java.xposed.rcs.model.SendMsgKeyInfo;
 import com.demo.java.xposed.utils.Base64Utils;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.cache.CachedGroupInfo;
+import com.example.messages.cache.CachedGroupInfo;
 
 import java.lang.reflect.Method;
 import java.util.Set;

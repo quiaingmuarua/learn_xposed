@@ -1,8 +1,8 @@
 package com.demo.java.xposed.rcs.apiCaller.manager;
 
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.cache.CacheMessageInfo;
-import com.example.sekiro.messages.model.DbQueryParams;
+import com.example.messages.cache.CacheMessageInfo;
+import com.example.messages.model.DbQueryParams;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
 

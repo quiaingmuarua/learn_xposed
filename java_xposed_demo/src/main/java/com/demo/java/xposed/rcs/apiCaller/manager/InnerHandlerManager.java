@@ -6,9 +6,9 @@ import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
 import com.demo.java.xposed.utils.ContactUtils;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.ChannelRequestParams;
-import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-import com.example.sekiro.messages.cache.CachedGroupInfo;
+import com.example.messages.ChannelRequestParams;
+import com.example.messages.model.XpGrpcMethodEnum;
+import com.example.messages.cache.CachedGroupInfo;
 
 import java.util.ArrayList;
 import java.util.List;
