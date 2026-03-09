@@ -11,7 +11,7 @@ public interface SekiroLambda {
     void handle(SekiroRequest req, SekiroResponse resp) throws Exception;
 
 
-    public static ActionHandler action(String action, SekiroLambda lambda) {
+     static ActionHandler action(String action, SekiroLambda lambda) {
         return new ActionHandler() {
             @Override
             public String action() {

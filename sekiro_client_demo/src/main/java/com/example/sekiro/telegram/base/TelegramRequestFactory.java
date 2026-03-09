@@ -59,9 +59,9 @@ public class TelegramRequestFactory {
     private long buildClientId(ImportContactItem item, int index) {
         long base = item.getClientId();
         if (base == 0L) {
-            base = System.currentTimeMillis();
+            base = System.currentTimeMillis() & 0xFFFFFFFFL;
         }
-        return base | (((long) index) << 32);
+        return (((long) index) << 32) | (base & 0xFFFFFFFFL);
     }
 
     private void setField(Class<?> clazz, Object target, String fieldName, Object value) throws Exception {

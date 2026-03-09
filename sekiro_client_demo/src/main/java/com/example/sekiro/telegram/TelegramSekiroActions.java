@@ -7,9 +7,9 @@ import android.content.Context;
 import com.example.sekiro.telegram.base.TelegramEnv;
 import com.example.sekiro.telegram.base.TelegramRequestFactory;
 import com.example.sekiro.telegram.base.TelegramResponseSerializer;
+import com.example.sekiro.telegram.base.TelegramRpcExecutor;
 import com.example.sekiro.telegram.base.TelegramRpcInvoker;
 import com.example.sekiro.telegram.model.ImportContactItem;
-import com.example.sekiro.util.SimpleLogUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,21 +36,21 @@ public final class TelegramSekiroActions {
         TelegramResponseSerializer serializer = new TelegramResponseSerializer();
         TelegramRequestFactory requestFactory = new TelegramRequestFactory(env);
         TelegramRpcInvoker rpcInvoker = new TelegramRpcInvoker(env, serializer);
+        TelegramRpcExecutor rpcExecutor = new TelegramRpcExecutor(rpcInvoker);
 
         return Arrays.asList(
                 action("resolvePhone", (req, resp) ->
-                        handleResolvePhone(context, requestFactory, rpcInvoker, req, resp)
+                        handleResolvePhone(requestFactory, rpcExecutor, req, resp)
                 ),
                 action("importContacts", (req, resp) ->
-                        handleImportContacts(requestFactory, rpcInvoker, req, resp)
+                        handleImportContacts(requestFactory, rpcExecutor, req, resp)
                 )
         );
     }
 
     private static void handleResolvePhone(
-            Context context,
             TelegramRequestFactory requestFactory,
-            TelegramRpcInvoker rpcInvoker,
+            TelegramRpcExecutor rpcExecutor,
             SekiroRequest req,
             SekiroResponse resp
     ) throws Exception {
@@ -62,18 +62,18 @@ public final class TelegramSekiroActions {
             return;
         }
 
-        SimpleLogUtils.show("[resolvePhone] start, phone=" + phone);
-
-        Object request = requestFactory.createResolvePhoneRequest(phone);
-        String resultJson = rpcInvoker.sendRequestSync(request, timeoutMs);
-
-        SimpleLogUtils.show("[resolvePhone] success, phone=" + phone);
-        resp.success(resultJson);
+        rpcExecutor.execute(
+                "resolvePhone",
+                "phone=" + phone,
+                timeoutMs,
+                () -> requestFactory.createResolvePhoneRequest(phone),
+                resp
+        );
     }
 
     private static void handleImportContacts(
             TelegramRequestFactory requestFactory,
-            TelegramRpcInvoker rpcInvoker,
+            TelegramRpcExecutor rpcExecutor,
             SekiroRequest req,
             SekiroResponse resp
     ) throws Exception {
@@ -85,13 +85,13 @@ public final class TelegramSekiroActions {
             return;
         }
 
-        SimpleLogUtils.show("[importContacts] start, size=" + items.size());
-
-        Object request = requestFactory.createImportContactsRequest(items);
-        String resultJson = rpcInvoker.sendRequestSync(request, timeoutMs);
-
-        SimpleLogUtils.show("[importContacts] success, size=" + items.size());
-        resp.success(resultJson);
+        rpcExecutor.execute(
+                "importContacts",
+                "size=" + items.size(),
+                timeoutMs,
+                () -> requestFactory.createImportContactsRequest(items),
+                resp
+        );
     }
 
     private static List<ImportContactItem> parseContacts(SekiroRequest request) {
