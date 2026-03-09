@@ -1,7 +1,7 @@
 package com.demo.java.xposed.rcs.apiCaller.model;
 
-import com.demo.java.xposed.rcs.shared.CommandException;
-import com.demo.java.xposed.rcs.shared.ErrorCode;
+import com.example.sekiro.shared.CommandException;
+import com.example.sekiro.shared.ErrorCode;
 import com.demo.java.xposed.utils.LogUtils;
 
 import java.io.UnsupportedEncodingException;

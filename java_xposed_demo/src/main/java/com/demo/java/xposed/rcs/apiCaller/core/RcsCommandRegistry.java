@@ -15,7 +15,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  * 推荐在应用启动或 hook 初始化时调用 init()。
  */
 
-public class CommandRegistry {
+public class RcsCommandRegistry {
     public static void init(XC_LoadPackage.LoadPackageParam loadPackageParam) {
         ClassLoader classLoader =loadPackageParam.classLoader;
         initActionHandler(classLoader);
@@ -27,12 +27,12 @@ public class CommandRegistry {
 
     public static void initActionHandler(ClassLoader classLoader){
 
-        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.LOOKUP.getPath(), (channelRequestParams,commandContext) ->
+        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.LOOKUP.getPath(), (channelRequestParams, commandContext) ->
                 ActionHandlerManager.handleLookupRegistered(channelRequestParams, classLoader));
-        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.KICKOFF.getPath(), (channelRequestParams,commandContext) ->
+        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.KICKOFF.getPath(), (channelRequestParams, commandContext) ->
               ActionHandlerManager.handleKickGroupUsers(channelRequestParams,  classLoader));
 
-        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.ADD_GROUP_USERS.getPath(), (channelRequestParams,commandContext) ->
+        XposedCommandRouter.registerChannel(XpGrpcMethodEnum.ADD_GROUP_USERS.getPath(), (channelRequestParams, commandContext) ->
                ActionHandlerManager.handleAddGroupUsers(channelRequestParams,  classLoader));
 
     }
@@ -60,10 +60,10 @@ public class CommandRegistry {
 
 
     public static void initDbQuery(ClassLoader classLoader){
-        XposedCommandRouter.registerDb(DbActionEnum.DELETE_CONVERSATION.getPath(), (dbQueryParams,commandContext) ->
+        XposedCommandRouter.registerDb(DbActionEnum.DELETE_CONVERSATION.getPath(), (dbQueryParams, commandContext) ->
               DbHandlerManager.deleteConversation(dbQueryParams,classLoader));
 
-        XposedCommandRouter.registerDb(DbActionEnum.DELETE_ALL_CONVERSATIONS.getPath(), (dbQueryParams,commandContext) ->
+        XposedCommandRouter.registerDb(DbActionEnum.DELETE_ALL_CONVERSATIONS.getPath(), (dbQueryParams, commandContext) ->
                 DbHandlerManager.deleteAllConversations(dbQueryParams,classLoader));
 
     }

@@ -1,4 +1,4 @@
-package com.demo.java.xposed.rcs.shared;
+package com.example.sekiro.shared;
 
 @FunctionalInterface
 public interface CommandHandler<T, V> {
