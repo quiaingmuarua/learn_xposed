@@ -1,5 +1,7 @@
 package com.example.sekiro.telegram;
 
+import static com.example.sekiro.telegram.base.SekiroLambda.action;
+
 import android.content.Context;
 
 import com.example.sekiro.telegram.base.TelegramEnv;
@@ -43,30 +45,6 @@ public final class TelegramSekiroActions {
                         handleImportContacts(requestFactory, rpcInvoker, req, resp)
                 )
         );
-    }
-
-    @FunctionalInterface
-    private interface SekiroLambda {
-        void handle(SekiroRequest req, SekiroResponse resp) throws Throwable;
-    }
-
-    private static ActionHandler action(String action, SekiroLambda lambda) {
-        return new ActionHandler() {
-            @Override
-            public String action() {
-                return action;
-            }
-
-            @Override
-            public void handleRequest(SekiroRequest req, SekiroResponse resp) {
-                try {
-                    lambda.handle(req, resp);
-                } catch (Throwable t) {
-                    SimpleLogUtils.show("[" + action + "] failed: " + t);
-                    resp.failed(t.getMessage() == null ? String.valueOf(t) : t.getMessage());
-                }
-            }
-        };
     }
 
     private static void handleResolvePhone(
