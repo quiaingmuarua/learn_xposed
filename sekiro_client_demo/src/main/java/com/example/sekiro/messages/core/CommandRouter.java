@@ -28,6 +28,13 @@ public class CommandRouter {
         defaultResolvers.put(clazz, resolver);
     }
 
+    public static <V> void registerRaw(
+            String event,
+            CommandHandler<JSONObject, V> handler
+    ) {
+        register(event, handler, json -> json);
+    }
+
     public static <T, V> void register(String event,
                                        CommandHandler<T, V> handler,
                                        Function<JSONObject, T> resolver) {

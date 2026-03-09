@@ -1,15 +1,12 @@
 package com.example.sekiro.telegram;
 
 import com.example.sekiro.messages.core.CommandRouter;
+import com.example.sekiro.messages.shared.CommandContext;
 import com.example.sekiro.messages.shared.CommandException;
 import com.example.sekiro.messages.shared.ErrorCode;
 import com.example.sekiro.telegram.base.TelegramRequestFactory;
 import com.example.sekiro.telegram.base.TelegramRequestParams;
 import com.example.sekiro.telegram.base.TelegramRpcExecutor;
-import com.example.sekiro.telegram.command.ImportContactsRequest;
-import com.example.sekiro.telegram.command.ResolvePhoneRequest;
-
-import com.example.sekiro.telegram.command.TelegramCommandRequest;
 import com.example.sekiro.telegram.model.ImportContactItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -18,7 +15,6 @@ import org.json.JSONObject;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public final class TelegramCommandRegistry {
 
@@ -30,73 +26,52 @@ public final class TelegramCommandRegistry {
     }
 
     @FunctionalInterface
-    private interface JsonResolver<T> {
-        T resolve(JSONObject json);
-    }
-
-    @FunctionalInterface
-    private interface TelegramApiRequestBuilder<T> {
-        Object build(T request, TelegramRequestFactory requestFactory) throws Exception;
+    private interface TelegramRequestBuilder {
+        Object build(TelegramRequestFactory factory) throws Exception;
     }
 
     public static void registerAll() {
-        registerTelegram(
-                "resolvePhone",
-                TelegramCommandRegistry::resolvePhoneResolver,
-                request -> "phone=" + request.getPhone(),
-                (request, factory) -> factory.createResolvePhoneRequest(request.getPhone())
-        );
-
-        registerTelegram(
-                "importContacts",
-                TelegramCommandRegistry::importContactsResolver,
-                request -> "size=" + request.getContacts().size(),
-                (request, factory) -> factory.createImportContactsRequest(request.getContacts())
-        );
+        CommandRouter.registerRaw("resolvePhone", TelegramCommandRegistry::handleResolvePhone);
+        CommandRouter.registerRaw("importContacts", TelegramCommandRegistry::handleImportContacts);
     }
-
-    private static <T extends TelegramCommandRequest> void registerTelegram(
-            String actionName,
-            JsonResolver<T> resolver,
-            Function<T, String> logSuffixBuilder,
-            TelegramApiRequestBuilder<T> apiRequestBuilder
-    ) {
-        CommandRouter.register(
-                actionName,
-                (request, context) -> {
-                    TelegramRequestFactory requestFactory = context.require(TelegramRequestFactory.class);
-                    TelegramRpcExecutor rpcExecutor = context.require(TelegramRpcExecutor.class);
-
-                    TelegramRequestParams params = new TelegramRequestParams(
-                            actionName,
-                            logSuffixBuilder.apply(request),
-                            request.getTimeoutMs()
-                    );
-
-                    return rpcExecutor.executeSync(
-                            params,
-                            () -> apiRequestBuilder.build(request, requestFactory)
-                    );
-                },
-                resolver::resolve
-        );
-    }
-
-    private static ResolvePhoneRequest resolvePhoneResolver(JSONObject json) {
+    private static String handleResolvePhone(JSONObject json, CommandContext context) throws Exception {
         String phone = CommandRouter.extractParam(json, "phone");
         long timeoutMs = parseTimeout(json, DEFAULT_RESOLVE_TIMEOUT_MS);
-        return new ResolvePhoneRequest(phone, timeoutMs);
+
+        return executeTelegram(
+                context,
+                new TelegramRequestParams("resolvePhone", "phone=" + phone, timeoutMs),
+                factory -> factory.createResolvePhoneRequest(phone)
+        );
     }
 
-    private static ImportContactsRequest importContactsResolver(JSONObject json) {
+    private static String handleImportContacts(JSONObject json, CommandContext context) throws Exception {
         long timeoutMs = parseTimeout(json, DEFAULT_IMPORT_TIMEOUT_MS);
-        List<ImportContactItem> items = parseContacts(json);
+        List<ImportContactItem> contacts = parseContacts(json);
 
-        if (items.isEmpty()) {
+        if (contacts.isEmpty()) {
             throw new CommandException(ErrorCode.PARSE_ERROR, "missing contacts");
         }
 
-        return new ImportContactsRequest(items, timeoutMs);
+        return executeTelegram(
+                context,
+                new TelegramRequestParams("importContacts", "size=" + contacts.size(), timeoutMs),
+                factory -> factory.createImportContactsRequest(contacts)
+        );
+    }
+
+    private static String executeTelegram(
+            CommandContext context,
+            TelegramRequestParams params,
+            TelegramRequestBuilder requestBuilder
+    ) throws Exception {
+        TelegramRequestFactory requestFactory = context.require(TelegramRequestFactory.class);
+        TelegramRpcExecutor rpcExecutor = context.require(TelegramRpcExecutor.class);
+
+        return rpcExecutor.executeSync(
+                params,
+                () -> requestBuilder.build(requestFactory)
+        );
     }
 
     private static long parseTimeout(JSONObject json, long defaultValue) {
