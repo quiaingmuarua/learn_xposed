@@ -1,10 +1,10 @@
 package com.demo.java.xposed.rcs.apiCaller.manager;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CacheMessageInfo;
+import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.messages.cache.CacheMessageInfo;
 import com.example.sekiro.messages.model.DbQueryParams;
 import com.example.sekiro.messages.shared.CommandException;
 import com.example.sekiro.messages.shared.ErrorCode;
-import com.demo.java.xposed.utils.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;

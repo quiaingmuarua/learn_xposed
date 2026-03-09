@@ -1,12 +1,12 @@
 package com.demo.java.xposed.rcs.hook.protocol;
 
-import com.demo.java.xposed.device.model.MessageCoreDataModel;
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.device.PluginInit;
+import com.demo.java.xposed.device.model.MessageCoreDataModel;
 import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
-import com.demo.java.xposed.rcs.apiCaller.cache.XposedClassCacher;
 import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
 import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.messages.cache.XposedClassCacher;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;

@@ -3,13 +3,12 @@ package com.demo.java.xposed.rcs.apiCaller.manager;
 import android.content.Context;
 
 import com.demo.java.xposed.base.BaseAppHook;
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
-import com.example.sekiro.messages.model.ChannelRequestParams;
-import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-
 import com.demo.java.xposed.utils.ContactUtils;
 import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.messages.model.ChannelRequestParams;
+import com.example.sekiro.messages.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 
 import java.util.ArrayList;
 import java.util.List;

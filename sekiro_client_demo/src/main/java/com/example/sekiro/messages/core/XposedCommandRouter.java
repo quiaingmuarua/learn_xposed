@@ -1,9 +1,9 @@
-package com.demo.java.xposed.rcs.apiCaller.core;
+package com.example.sekiro.messages.core;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.example.sekiro.messages.model.ChannelRequestParams;
 import com.example.sekiro.messages.model.DbQueryParams;
 import com.example.sekiro.messages.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 import com.example.sekiro.messages.shared.CommandException;
 import com.example.sekiro.messages.shared.CommandHandler;
 import com.example.sekiro.messages.shared.CommandRouter;

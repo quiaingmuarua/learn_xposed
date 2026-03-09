@@ -1,11 +1,12 @@
 package com.demo.java.xposed.rcs.apiCaller.core;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.rcs.apiCaller.manager.ActionHandlerManager;
 import com.demo.java.xposed.rcs.apiCaller.manager.DbHandlerManager;
 import com.demo.java.xposed.rcs.apiCaller.manager.InnerHandlerManager;
+import com.example.sekiro.messages.core.XposedCommandRouter;
 import com.example.sekiro.messages.model.DbActionEnum;
 import com.example.sekiro.messages.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
@@ -25,7 +26,7 @@ public class RcsCommandRegistry {
 
 
 
-    public static void initActionHandler(ClassLoader classLoader){
+    private static void initActionHandler(ClassLoader classLoader){
 
         XposedCommandRouter.registerChannel(XpGrpcMethodEnum.LOOKUP.getPath(), (channelRequestParams, commandContext) ->
                 ActionHandlerManager.handleLookupRegistered(channelRequestParams, classLoader));
@@ -38,7 +39,7 @@ public class RcsCommandRegistry {
     }
 
 
-    public static void initInnerAction(ClassLoader classLoader){
+    private static void initInnerAction(ClassLoader classLoader){
         XposedCommandRouter.registerChannel(XpGrpcMethodEnum.AUTO_KICK_DELIVERED_USERS.getPath(), (channelRequestParams,commandContext) ->
                InnerHandlerManager.handleAutoKickDeliverGroupUsers(CachedGroupInfo.getDeliveredGroupMembersMap(), classLoader));
         XposedCommandRouter.registerChannel(XpGrpcMethodEnum.AUTO_KICK_SENT_USERS.getPath(), (channelRequestParams,commandContext) ->
@@ -59,7 +60,7 @@ public class RcsCommandRegistry {
 
 
 
-    public static void initDbQuery(ClassLoader classLoader){
+    private static void initDbQuery(ClassLoader classLoader){
         XposedCommandRouter.registerDb(DbActionEnum.DELETE_CONVERSATION.getPath(), (dbQueryParams, commandContext) ->
               DbHandlerManager.deleteConversation(dbQueryParams,classLoader));
 

@@ -1,6 +1,6 @@
-package com.demo.java.xposed.rcs.apiCaller.cache;
+package com.example.sekiro.messages.cache;
 
-import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.util.SimpleLogUtils;
 
 import java.lang.ref.WeakReference;
 
@@ -29,7 +29,7 @@ public class CacheMessageInfo {
 
     public void setDatabaseInterfaceImpl(Object databaseInterfaceImpl) {
         this.databaseInterfaceImpl = databaseInterfaceImpl;
-        LogUtils.show("setDatabaseInterfaceImpl databaseInterfaceImpl = " + databaseInterfaceImpl);
+        SimpleLogUtils.show("setDatabaseInterfaceImpl databaseInterfaceImpl = " + databaseInterfaceImpl);
     }
 
 }

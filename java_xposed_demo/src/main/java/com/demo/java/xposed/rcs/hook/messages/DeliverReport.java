@@ -2,15 +2,15 @@ package com.demo.java.xposed.rcs.hook.messages;
 
 import android.text.TextUtils;
 
-import com.demo.java.xposed.device.model.MessageCoreDataModel;
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
-import com.demo.java.xposed.rcs.enums.MsgStatusEnum;
 import com.demo.java.xposed.base.BaseAppHook;
+import com.demo.java.xposed.device.model.MessageCoreDataModel;
+import com.demo.java.xposed.device.model.SimInfoModel;
+import com.demo.java.xposed.rcs.enums.MsgStatusEnum;
 import com.demo.java.xposed.rcs.model.MsgItem;
 import com.demo.java.xposed.rcs.model.SendMsgKeyInfo;
-import com.demo.java.xposed.device.model.SimInfoModel;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.collection.StringUtils;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 
 import java.util.Arrays;
 

@@ -1,9 +1,9 @@
 package com.demo.java.xposed.rcs.hook.messages;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 
 import java.util.Base64;
 import java.util.Set;

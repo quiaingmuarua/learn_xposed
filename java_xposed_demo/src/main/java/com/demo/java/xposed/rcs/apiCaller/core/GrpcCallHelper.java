@@ -4,16 +4,15 @@ import static com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc.cacheToken
 
 import android.text.TextUtils;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
-import com.demo.java.xposed.rcs.apiCaller.cache.XposedClassCacher;
-import com.example.sekiro.messages.model.ChannelRequestParams;
-import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
 import com.demo.java.xposed.rcs.hook.messages.Rcs;
 import com.demo.java.xposed.utils.LogUtils;
-import com.google.protobuf.InvalidProtocolBufferException;
+import com.example.sekiro.messages.cache.XposedClassCacher;
+import com.example.sekiro.messages.model.ChannelRequestParams;
+import com.example.sekiro.messages.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
+import com.example.sekiro.messages.shared.CommandException;
+import com.example.sekiro.messages.shared.ErrorCode;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -119,7 +118,7 @@ public class GrpcCallHelper {
         Rcs.RcsConferenceProperties rcsConferenceProperties= null;
         try {
             rcsConferenceProperties = Rcs.RcsConferenceProperties.parseFrom(CachedGroupInfo.getRrsConferencePropertiesBytes(groupId));
-        } catch (InvalidProtocolBufferException e) {
+        } catch (Exception e) {
             throw new CommandException(ErrorCode.PARSE_ERROR,"解析 rcsConferenceProperties 错误");
         }
 

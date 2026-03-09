@@ -1,10 +1,8 @@
 package com.demo.java.xposed.rcs.hook.protocol;
 
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
-import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
-import com.demo.java.xposed.rcs.apiCaller.cache.XposedClassCacher;
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.device.PluginInit;
+import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
 import com.demo.java.xposed.rcs.hook.messages.Rcs;
 import com.demo.java.xposed.rcs.hook.messages.Rcs.LookupRegisteredRequests;
 import com.demo.java.xposed.rcs.model.MsgItem;
@@ -12,6 +10,8 @@ import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
 import com.demo.java.xposed.rcs.model.SendMsgKeyInfo;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.collection.StringUtils;
+import com.example.sekiro.messages.cache.XposedClassCacher;
+import com.example.sekiro.messages.shared.CachedGroupInfo;
 import com.google.protobuf.util.JsonFormat;
 
 import de.robv.android.xposed.XC_MethodHook;

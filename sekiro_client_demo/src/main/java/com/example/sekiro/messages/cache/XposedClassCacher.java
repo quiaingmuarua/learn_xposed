@@ -1,6 +1,7 @@
-package com.demo.java.xposed.rcs.apiCaller.cache;
+package com.example.sekiro.messages.cache;
 
-import com.demo.java.xposed.utils.LogUtils;
+
+import com.example.sekiro.util.SimpleLogUtils;
 
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -64,7 +65,7 @@ public class XposedClassCacher {
     public static void run(XC_LoadPackage.LoadPackageParam loadPackageParam) {
 
         try {
-            LogUtils.show("ClassManager run");
+            SimpleLogUtils.show("ClassManager run");
             ClassLoader classLoader = loadPackageParam.classLoader;
             callOptionsClass = XposedHelpers.findClass("edaw", classLoader);
             deadlineClass = XposedHelpers.findClass("edcf", classLoader);
@@ -85,9 +86,9 @@ public class XposedClassCacher {
             AddGroupUsersRequestClass=classLoader.loadClass("ebsf");
             StatusClass=classLoader.loadClass("io.grpc.Status");
             ReceiveMessagesRequestsRpcClass=classLoader.loadClass("ebmv");
-            LogUtils.show("ClassManager init success");
+            SimpleLogUtils.show("ClassManager init success");
         } catch (Exception e) {
-            LogUtils.show("ClassManager init error " + e.getMessage());
+            SimpleLogUtils.show("ClassManager init error " + e.getMessage());
         }
 
     }

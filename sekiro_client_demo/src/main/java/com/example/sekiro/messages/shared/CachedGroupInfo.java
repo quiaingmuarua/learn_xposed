@@ -1,8 +1,8 @@
-package com.demo.java.xposed.rcs.apiCaller.cache;
+package com.example.sekiro.messages.shared;
 
 
 import com.example.sekiro.messages.model.XpGroupInfo;
-import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.util.SimpleLogUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class CachedGroupInfo {
 
 
     public static void addSentMembers(String groupId,List<String> members) {
-        LogUtils.show("addSentMembers groupId = " + groupId + "members = " + members +" size" + members.size());
+        SimpleLogUtils.show("addSentMembers groupId = " + groupId + "members = " + members +" size" + members.size());
         // 使用 TreeSet 来存储唯一的成员
         getOrCreate(groupId).addSentMembers( (members.stream()
                 .map(String::trim) // 去除每个手机号的前后空格
