@@ -46,20 +46,8 @@ android {
     }
 }
 
-configurations.configureEach {
-    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk7"
-    exclude group: "org.jetbrains.kotlin", module: "kotlin-stdlib-jdk8"
-}
-
 dependencies {
-    // 只保留最基本 UI 支撑；如果连设置页都不要，后面还能继续删
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-
-    // Xposed API 建议 compileOnly，不打进 APK
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation project(':xposed_command_router')
     implementation 'cn.iinti.sekiro3.business:sekiro-business-api:1.5'
-
-    testImplementation 'junit:junit:4.13.2'
 }

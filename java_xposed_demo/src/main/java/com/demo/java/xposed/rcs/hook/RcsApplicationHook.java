@@ -151,7 +151,7 @@ public class RcsApplicationHook extends BaseAppHook {
             CommonMessageClass.run(loadPackageParam);
             RegisterHook.run(loadPackageParam);
             XposedClassCacher.run(loadPackageParam.classLoader);
-            GrpcCallSender.run(loadPackageParam);
+            GrpcCallSender.run();
 //            RcsCommandRegistry.init(loadPackageParam);
             SmsMessageHook.run(loadPackageParam);
 

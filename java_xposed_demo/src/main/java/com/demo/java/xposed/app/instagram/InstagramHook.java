@@ -6,7 +6,6 @@ import android.content.Context;
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
-import com.example.sekiro.SekiroClientInit;
 
 import org.json.JSONObject;
 
@@ -57,7 +56,7 @@ public class InstagramHook extends BaseAppHook {
             mLoader = loadPackageParam.classLoader;
             hookToken(classLoader, mContext);
             hookHttp(classLoader,mContext);
-            SekiroClientInit.init("instagram",mContext, Collections.singletonList(new InsSekiroActionHandler(mContext)));
+//            SekiroClientInit.init("instagram",mContext, Collections.singletonList(new InsSekiroActionHandler(mContext)));
 
         } catch (Exception e) {
             PrintStack.printStackErrInfo("InstagramHook run Exception", e);

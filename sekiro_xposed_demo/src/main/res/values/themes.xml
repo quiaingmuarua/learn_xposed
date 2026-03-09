@@ -1,7 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Learn_xposed" parent="Theme.AppCompat.DayNight.DarkActionBar">
-        <item name="colorPrimary">@android:color/holo_blue_dark</item>
-        <item name="colorPrimaryDark">@android:color/holo_blue_bright</item>
-        <item name="colorAccent">@android:color/holo_green_light</item>
-    </style>
+    <style name="Theme.Learn_xposed" parent="@android:style/Theme.DeviceDefault.Light.NoActionBar" />
 </resources>

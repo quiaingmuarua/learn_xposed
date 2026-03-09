@@ -85,11 +85,11 @@ public class SekiroClientInit {
         List<ActionHandler> handlers = new ArrayList<>();
 
         handlers.add(action("version", (req, resp) -> {
-            resp.success("4.0");
+            resp.success("6.0");
         }));
 
         handlers.add(action("info", (req, resp) -> {
-            resp.success("info");
+            resp.success("sekiro_client_demo");
         }));
 
         handlers.add(action("add", (req, resp) -> {

@@ -120,7 +120,6 @@ dependencies {
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(':xposed_command_router')
-    implementation('cn.iinti.sekiro3.business:sekiro-business-api:1.5')
 
     // 测试依赖
     testImplementation 'junit:junit:4.13.2'
