@@ -1,8 +1,7 @@
 package com.demo.java.xposed.rcs.apiCaller.cache;
 
 
-import com.demo.java.xposed.rcs.apiCaller.model.XpGroupInfo;
-import com.demo.java.xposed.rcs.hook.messages.Rcs;
+import com.example.sekiro.messages.model.XpGroupInfo;
 import com.demo.java.xposed.utils.LogUtils;
 import com.google.gson.Gson;
 

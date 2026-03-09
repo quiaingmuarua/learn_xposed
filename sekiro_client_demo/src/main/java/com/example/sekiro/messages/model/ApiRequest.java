@@ -1,6 +1,5 @@
-package com.demo.java.xposed.rcs.apiCaller.model;
+package com.example.sekiro.messages.model;
 
-import androidx.annotation.NonNull;
 
 import java.util.Map;
 
@@ -25,8 +24,4 @@ public class ApiRequest {
     }
 
 
-    @NonNull
-    public String toString(){
-        return "task_type:"+task_type+",task_content:"+task_content+",phone:"+phone+",status:"+status;
-    }
 }

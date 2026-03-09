@@ -4,8 +4,8 @@ import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.rcs.apiCaller.manager.ActionHandlerManager;
 import com.demo.java.xposed.rcs.apiCaller.manager.DbHandlerManager;
 import com.demo.java.xposed.rcs.apiCaller.manager.InnerHandlerManager;
-import com.demo.java.xposed.rcs.apiCaller.model.DbActionEnum;
-import com.demo.java.xposed.rcs.apiCaller.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.model.DbActionEnum;
+import com.example.sekiro.messages.model.XpGrpcMethodEnum;
 
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 

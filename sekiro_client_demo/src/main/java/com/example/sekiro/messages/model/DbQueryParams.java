@@ -1,4 +1,4 @@
-package com.demo.java.xposed.rcs.apiCaller.model;
+package com.example.sekiro.messages.model;
 
 import java.util.List;
 

@@ -1,13 +1,13 @@
 package com.demo.java.xposed.rcs.apiCaller.core;
 
 import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
-import com.demo.java.xposed.rcs.apiCaller.model.ChannelRequestParams;
-import com.demo.java.xposed.rcs.apiCaller.model.DbQueryParams;
-import com.demo.java.xposed.rcs.apiCaller.model.XpGrpcMethodEnum;
-import com.example.sekiro.shared.CommandException;
-import com.example.sekiro.shared.CommandHandler;
-import com.example.sekiro.shared.CommandRouter;
-import com.example.sekiro.shared.ErrorCode;
+import com.example.sekiro.messages.model.ChannelRequestParams;
+import com.example.sekiro.messages.model.DbQueryParams;
+import com.example.sekiro.messages.model.XpGrpcMethodEnum;
+import com.example.sekiro.messages.shared.CommandException;
+import com.example.sekiro.messages.shared.CommandHandler;
+import com.example.sekiro.messages.shared.CommandRouter;
+import com.example.sekiro.messages.shared.ErrorCode;
 
 import org.json.JSONObject;
 

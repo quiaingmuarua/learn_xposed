@@ -1,6 +1,5 @@
-package com.demo.java.xposed.rcs.apiCaller.model;
+package com.example.sekiro.messages.model;
 
-import com.demo.java.xposed.rcs.hook.messages.Rcs;
 
 import java.util.Set;
 import java.util.TreeSet;

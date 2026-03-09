@@ -1,4 +1,4 @@
-package com.example.sekiro.shared;
+package com.example.sekiro.messages.shared;
 
 import org.json.JSONObject;
 

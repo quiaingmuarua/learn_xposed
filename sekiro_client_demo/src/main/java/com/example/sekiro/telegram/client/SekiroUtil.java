@@ -1,6 +1,6 @@
-package com.example.sekiro.client;
+package com.example.sekiro.telegram.client;
 
-import static com.example.sekiro.client.SekiroLambda.action;
+import static com.example.sekiro.telegram.client.SekiroLambda.action;
 
 import android.content.Context;
 import android.content.SharedPreferences;

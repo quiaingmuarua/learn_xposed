@@ -1,8 +1,8 @@
 package com.demo.java.xposed.rcs.apiCaller.core;
 
 import com.demo.java.xposed.base.BaseAppHook;
-import com.example.sekiro.shared.CommandException;
-import com.example.sekiro.shared.ErrorCode;
+import com.example.sekiro.messages.shared.CommandException;
+import com.example.sekiro.messages.shared.ErrorCode;
 
 import com.demo.java.xposed.rcs.apiCaller.cache.XposedClassCacher;
 import com.demo.java.xposed.utils.LogUtils;

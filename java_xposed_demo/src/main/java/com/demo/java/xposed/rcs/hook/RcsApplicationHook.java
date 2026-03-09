@@ -14,7 +14,7 @@ import com.demo.java.xposed.caller.XposedHttpServer;
 import com.demo.java.xposed.rcs.apiCaller.cache.XposedClassCacher;
 import com.demo.java.xposed.rcs.apiCaller.core.RcsCommandRegistry;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallSender;
-import com.example.sekiro.shared.CommandContext;
+import com.example.sekiro.messages.shared.CommandContext;
 import com.demo.java.xposed.rcs.hook.gms.SmsMessageHook;
 import com.demo.java.xposed.rcs.hook.messages.AutoRegisterHook;
 import com.demo.java.xposed.rcs.hook.messages.CommonMessageClass;

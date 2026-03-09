@@ -1,8 +1,9 @@
-package com.demo.java.xposed.rcs.apiCaller.model;
+package com.example.sekiro.messages.model;
 
-import com.example.sekiro.shared.CommandException;
-import com.example.sekiro.shared.ErrorCode;
-import com.demo.java.xposed.utils.LogUtils;
+import com.example.sekiro.messages.shared.CommandException;
+import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.sekiro.util.SimpleLogUtils;
+
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -123,7 +124,7 @@ public class ChannelRequestParams {
                 .filter(s -> !s.isEmpty())
                 .map(ChannelRequestParams::normalizePhone)
                 .collect(Collectors.toList());
-        LogUtils.show("[CommandRouter] 标准化后的 phoneList = " + phoneList);
+        SimpleLogUtils.show("[CommandRouter] 标准化后的 phoneList = " + phoneList);
         return phoneList;
     }
 
