@@ -15,7 +15,7 @@ import com.demo.java.xposed.device.model.SimInfoModel;
 import com.demo.java.xposed.rcs.SimInfoFingerPrint;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
 import com.example.sekiro.messages.core.GrpcCallSender;
-import com.demo.java.xposed.rcs.apiCaller.core.RcsCommandRegistry;
+
 import com.demo.java.xposed.rcs.hook.gms.SmsMessageHook;
 import com.demo.java.xposed.rcs.hook.messages.AutoRegisterHook;
 import com.demo.java.xposed.rcs.hook.messages.CommonMessageClass;
@@ -152,7 +152,7 @@ public class RcsApplicationHook extends BaseAppHook {
             RegisterHook.run(loadPackageParam);
             XposedClassCacher.run(loadPackageParam);
             GrpcCallSender.run(loadPackageParam);
-            RcsCommandRegistry.init(loadPackageParam);
+//            RcsCommandRegistry.init(loadPackageParam);
             SmsMessageHook.run(loadPackageParam);
 
 

@@ -3,7 +3,8 @@ package com.demo.java.xposed.caller;
 
 import com.demo.java.xposed.device.PluginInit;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.core.XposedCommandRouter;
+import com.example.sekiro.messages.core.CommandRouter;
+import com.example.sekiro.messages.core.CommandRouter;
 import com.example.sekiro.messages.shared.ApiResponse;
 import com.example.sekiro.messages.shared.ErrorCode;
 import com.google.gson.Gson;
@@ -58,7 +59,7 @@ public class XposedHttpServer extends NanoHTTPD {
 
     private void initRoutes() {
         // 动态注册所有已注册的 event -> HTTP 路由
-        for (String event : XposedCommandRouter.getRegisterMethods()) {
+        for (String event : CommandRouter.getRegisterMethods()) {
             String path = "/" + event;
             routeMap.put(path, session -> autoHandle(path, session));
         }
@@ -77,7 +78,7 @@ public class XposedHttpServer extends NanoHTTPD {
                 }
             }
 
-            return XposedCommandRouter.dispatch(json);
+            return CommandRouter.dispatch(json);
 
         } catch (Exception e) {
             return new ApiResponse<>(ErrorCode.PARSE_ERROR.code, "参数解析失败: " + e.getMessage());

@@ -4,7 +4,7 @@ import org.json.JSONObject;
 
 import java.util.function.Function;
 
-class RegisteredHandler<T, V> {
+public class RegisteredHandler<T, V> {
     private final CommandHandler<T, V> handler;
     private final Function<JSONObject, T> paramResolver;
 
@@ -15,7 +15,7 @@ class RegisteredHandler<T, V> {
 
     public ApiResponse<?> invoke(JSONObject json) throws Exception {
         T request = paramResolver.apply(json);
-        CommandContext ctx =CommandContext.getInstance();
+        CommandContext ctx = CommandContext.getInstance();
         V result = handler.handle(request, ctx);
         return ApiResponse.success(result);
     }

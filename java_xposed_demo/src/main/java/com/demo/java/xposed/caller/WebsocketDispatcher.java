@@ -1,7 +1,8 @@
 package com.demo.java.xposed.caller;
 
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.core.XposedCommandRouter;
+
+import com.example.sekiro.messages.core.CommandRouter;
 import com.example.sekiro.messages.shared.ApiResponse;
 import com.google.gson.Gson;
 
@@ -21,7 +22,7 @@ public class WebsocketDispatcher {
         }
         try {
             JSONObject json = new JSONObject(msg);
-            ApiResponse<?> response = XposedCommandRouter.dispatch(json);
+            ApiResponse<?> response = CommandRouter.dispatch(json);
             LogUtils.show("WS 响应: " + new Gson().toJson(response));
             return new Gson().toJson(response);
 

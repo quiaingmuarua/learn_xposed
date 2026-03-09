@@ -2,8 +2,6 @@ package com.example.sekiro.telegram.base;
 
 import com.example.sekiro.util.SimpleLogUtils;
 
-import cn.iinti.sekiro3.business.api.interfaze.SekiroResponse;
-
 public class TelegramRpcExecutor {
 
     private final TelegramRpcInvoker rpcInvoker;
@@ -17,12 +15,11 @@ public class TelegramRpcExecutor {
         Object get() throws Exception;
     }
 
-    public void execute(
+    public String executeSync(
             String actionName,
             String logSuffix,
             long timeoutMs,
-            RpcRequestSupplier supplier,
-            SekiroResponse resp
+            RpcRequestSupplier supplier
     ) throws Exception {
         String prefix = "[" + actionName + "]";
         String extra = (logSuffix == null || logSuffix.trim().isEmpty()) ? "" : ", " + logSuffix;
@@ -33,6 +30,6 @@ public class TelegramRpcExecutor {
         String resultJson = rpcInvoker.sendRequestSync(request, timeoutMs);
 
         SimpleLogUtils.show(prefix + " success" + extra);
-        resp.success(resultJson);
+        return resultJson;
     }
 }

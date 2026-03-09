@@ -20,7 +20,6 @@ public class ApiResponse<T> {
     }
 
     public ApiResponse() {
-
     }
 
     public static ApiResponse<?> fromException(CommandException e) {
@@ -35,10 +34,8 @@ public class ApiResponse<T> {
         return new ApiResponse<>(ErrorCode.UNKNOWN_ERROR.code, e.getMessage());
     }
 
-
-    public void setDuration(float duration) {
-        this.duration = (int) (duration);
-
+    public void setDuration(long duration) {
+        this.duration = (int) duration;
     }
 
     public static <T> ApiResponse<T> success(T data) {
@@ -49,4 +46,19 @@ public class ApiResponse<T> {
         return resp;
     }
 
+    public boolean isSuccess() {
+        return "ok".equals(status) && code == 200;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public T getData() {
+        return data;
+    }
 }
