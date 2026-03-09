@@ -1,4 +1,4 @@
-package com.example.messages;
+package com.demo.java.xposed.rcs.apiCaller.core;
 import com.example.messages.cache.XposedClassCacher;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
@@ -13,7 +13,6 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 /**
  * 帮助主动发起 gRPC 请求
@@ -40,7 +39,7 @@ public class GrpcCallSender  {
 
 
     //初始化需要hook init
-    public static void run(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+    public static void run() {
         if (!listenerHooked.compareAndSet(false, true)) return;
         hookListener();
     }

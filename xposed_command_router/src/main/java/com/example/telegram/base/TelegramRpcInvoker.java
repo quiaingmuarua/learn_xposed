@@ -6,13 +6,13 @@ import com.example.command.core.PendingRequest;
 import com.example.command.core.CommandContext;
 import com.example.command.util.SimpleLogUtils;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import de.robv.android.xposed.XposedHelpers;
 
 public class TelegramRpcInvoker {
 
@@ -176,8 +176,11 @@ public class TelegramRpcInvoker {
     }
 
 
-    public int getCurrentAccount(ClassLoader classLoader) throws ClassNotFoundException {
+
+    public int getCurrentAccount(ClassLoader classLoader) throws Exception {
         Class<?> userConfigClass = classLoader.loadClass("org.telegram.messenger.UserConfig");
-        return XposedHelpers.getStaticIntField(userConfigClass, "selectedAccount");
+        Field field = userConfigClass.getDeclaredField("selectedAccount");
+        field.setAccessible(true);
+        return field.getInt(null); // 静态字段传 null
     }
 }

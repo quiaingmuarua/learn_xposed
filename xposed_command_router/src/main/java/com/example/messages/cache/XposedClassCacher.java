@@ -3,8 +3,7 @@ package com.example.messages.cache;
 
 import com.example.command.util.SimpleLogUtils;
 
-import de.robv.android.xposed.XposedHelpers;
-import de.robv.android.xposed.callbacks.XC_LoadPackage;
+
 
 public class XposedClassCacher {
 
@@ -62,13 +61,13 @@ public class XposedClassCacher {
     //Class<?> ReceiveMessagesRequestsRpcClass = classLoader.loadClass("ebmv");
     public static  Class<?> ReceiveMessagesRequestsRpcClass;
 
-    public static void run(XC_LoadPackage.LoadPackageParam loadPackageParam) {
+    public static void run(ClassLoader classLoader) {
 
         try {
             SimpleLogUtils.show("ClassManager run");
-            ClassLoader classLoader = loadPackageParam.classLoader;
-            callOptionsClass = XposedHelpers.findClass("edaw", classLoader);
-            deadlineClass = XposedHelpers.findClass("edcf", classLoader);
+
+            callOptionsClass = classLoader.loadClass("edaw");
+            deadlineClass = classLoader.loadClass("edcf");
             clientCallListenerClass = classLoader.loadClass("edba");
             ClientCallImplClass = classLoader.loadClass("edmx");
             ClientCallsClass = classLoader.loadClass("edzr");

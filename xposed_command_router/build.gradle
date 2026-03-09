@@ -22,11 +22,4 @@ android {
 }
 
 dependencies {
-    // Xposed 框架库
-    compileOnly fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.3.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
-    implementation('cn.iinti.sekiro3.business:sekiro-business-api:1.5')
-
 }
