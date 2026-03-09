@@ -22,6 +22,7 @@ public class RcsCommandRegistry {
         initActionHandler(classLoader);
         initInnerAction(classLoader);
         initDbQuery(classLoader);
+
     }
 
 

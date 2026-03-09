@@ -14,7 +14,7 @@ import com.demo.java.xposed.device.PluginInit;
 import com.demo.java.xposed.device.model.SimInfoModel;
 import com.demo.java.xposed.rcs.SimInfoFingerPrint;
 import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
-import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallSender;
+import com.example.sekiro.messages.core.GrpcCallSender;
 import com.demo.java.xposed.rcs.apiCaller.core.RcsCommandRegistry;
 import com.demo.java.xposed.rcs.hook.gms.SmsMessageHook;
 import com.demo.java.xposed.rcs.hook.messages.AutoRegisterHook;

@@ -1,10 +1,8 @@
-package com.demo.java.xposed.rcs.apiCaller.core;
-
-import com.demo.java.xposed.base.BaseAppHook;
-import com.demo.java.xposed.utils.LogUtils;
+package com.example.sekiro.messages.core;
 import com.example.sekiro.messages.cache.XposedClassCacher;
 import com.example.sekiro.messages.shared.CommandException;
 import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.sekiro.util.SimpleLogUtils;
 
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -20,7 +18,7 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 /**
  * 帮助主动发起 gRPC 请求
  */
-public class GrpcCallSender  extends BaseAppHook {
+public class GrpcCallSender  {
 
     private static final int RESPONSE_TIMEOUT_SECONDS = 10; // 默认超时时间
 
@@ -57,10 +55,10 @@ public class GrpcCallSender  extends BaseAppHook {
      * @param requestMessage       请求对象（protobuf）
      * @return 响应对象（protobuf Response），超时返回 null
      */
-     static Object sendGrpc(ClassLoader classLoader,
-                                  Object internalGrpcChannel,
-                                  Object methodDescriptor,
-                                  Object requestMessage, Object metadata) throws Exception {
+     public static Object sendGrpc(ClassLoader classLoader,
+                                   Object internalGrpcChannel,
+                                   Object methodDescriptor,
+                                   Object requestMessage, Object metadata) throws Exception {
             // 构建 CallOptions
             Object callOptions = buildBlockingCallOptions();
 
@@ -84,10 +82,10 @@ public class GrpcCallSender  extends BaseAppHook {
 
             // 同步等待响应
             Object response = queue.poll(RESPONSE_TIMEOUT_SECONDS, TimeUnit.SECONDS);
-            LogUtils.show("sendGrpc response = " + response );
+            SimpleLogUtils.show("sendGrpc response = " + response );
             listenerQueueMap.remove(listener);
             if (response == null) {
-                LogUtils.show("sendGrpc Timeout waiting for gRPC response");
+                SimpleLogUtils.show("sendGrpc Timeout waiting for gRPC response");
                 throw new CommandException(ErrorCode.TIMEOUT_ERROR,"Timeout waiting for gRPC response");
             }
             return response;
@@ -143,10 +141,10 @@ public class GrpcCallSender  extends BaseAppHook {
                 Object listenerThis = param.thisObject;
                 BlockingQueue<Object> queue = listenerQueueMap.get(listenerThis);
                 if (queue != null) {
-                    LogUtils.show("buildClientCallListener onMessage → " + msg);
+                    SimpleLogUtils.show("buildClientCallListener onMessage → " + msg);
                     queue.offer(msg);
                 } else {
-                    LogUtils.show("buildClientCallListener onMessage → no queue found for listener = " + listenerThis);
+                    SimpleLogUtils.show("buildClientCallListener onMessage → no queue found for listener = " + listenerThis);
                 }
             }
             @Override
@@ -159,7 +157,7 @@ public class GrpcCallSender  extends BaseAppHook {
             @Override
             protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                 super.beforeHookedMethod(param);
-                LogUtils.show("buildClientCallListener METHOD_ON_HEADERS " + param.args[0]);
+                SimpleLogUtils.show("buildClientCallListener METHOD_ON_HEADERS " + param.args[0]);
             }
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
