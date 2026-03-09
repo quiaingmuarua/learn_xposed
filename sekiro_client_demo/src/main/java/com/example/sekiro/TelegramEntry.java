@@ -1,8 +1,10 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro;
 
 import android.content.Context;
 
-import com.example.sekiro.demo.SekiroUtil;
+import com.example.sekiro.util.SekiroUtil;
+import com.example.sekiro.telegram.handler.ImportContactsSekiroActionHandler;
+import com.example.sekiro.telegram.handler.ResolvePhoneActionHandler;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +20,6 @@ public class TelegramEntry {
 
     private static List<ActionHandler> getAllActions(Context mContext){
         ClassLoader mLoader=mContext.getClassLoader();
-        return Arrays.asList(new TelegramSekiroActionHandler(mContext, mLoader), new ImportContactsSekiroActionHandler(mContext, mLoader));
+        return Arrays.asList(new ResolvePhoneActionHandler(mContext, mLoader), new ImportContactsSekiroActionHandler(mContext, mLoader));
     }
 }

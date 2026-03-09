@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.base;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

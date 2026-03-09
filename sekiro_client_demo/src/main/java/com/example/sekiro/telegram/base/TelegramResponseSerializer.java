@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.base;
 
 import org.json.JSONArray;
 import org.json.JSONException;

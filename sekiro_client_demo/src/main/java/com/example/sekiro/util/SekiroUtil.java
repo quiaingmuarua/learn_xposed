@@ -1,4 +1,4 @@
-package com.example.sekiro.demo;
+package com.example.sekiro.util;
 
 import java.util.List;
 import java.util.UUID;

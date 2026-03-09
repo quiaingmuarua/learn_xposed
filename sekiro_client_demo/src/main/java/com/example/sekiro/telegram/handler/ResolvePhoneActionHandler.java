@@ -1,16 +1,20 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.handler;
 
 
 
 import android.content.Context;
 
+import com.example.sekiro.telegram.TelegramEnv;
+import com.example.sekiro.telegram.TelegramRequestFactory;
+import com.example.sekiro.telegram.base.TelegramResponseSerializer;
+import com.example.sekiro.telegram.base.TelegramRpcInvoker;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import cn.iinti.sekiro3.business.api.interfaze.ActionHandler;
 import cn.iinti.sekiro3.business.api.interfaze.SekiroRequest;
 import cn.iinti.sekiro3.business.api.interfaze.SekiroResponse;
 
-public class TelegramSekiroActionHandler implements ActionHandler {
+public class ResolvePhoneActionHandler implements ActionHandler {
 
     private static final long DEFAULT_TIMEOUT_MS = 8000L;
 
@@ -19,7 +23,7 @@ public class TelegramSekiroActionHandler implements ActionHandler {
     private final TelegramRequestFactory requestFactory;
     private final TelegramRpcInvoker rpcInvoker;
 
-    public TelegramSekiroActionHandler(Context context, ClassLoader classLoader) {
+    public ResolvePhoneActionHandler(Context context, ClassLoader classLoader) {
         this.context = context;
 
         TelegramEnv env = new TelegramEnv(classLoader);
@@ -46,16 +50,16 @@ public class TelegramSekiroActionHandler implements ActionHandler {
         }
 
         try {
-            SimpleLogUtils.show("[TelegramSekiroActionHandler] resolvePhone start, phone=" + phone);
+            SimpleLogUtils.show("[ResolvePhoneActionHandler] resolvePhone start, phone=" + phone);
 
             Object request = requestFactory.createResolvePhoneRequest(phone);
             String resultJson = rpcInvoker.sendRequestSync(request, timeoutMs);
 
-            SimpleLogUtils.show("[TelegramSekiroActionHandler] resolvePhone success, phone=" + phone);
+            SimpleLogUtils.show("[ResolvePhoneActionHandler] resolvePhone success, phone=" + phone);
             sekiroResponse.success(resultJson);
 
         } catch (Throwable t) {
-            SimpleLogUtils.show("[TelegramSekiroActionHandler] resolvePhone failed: " + t);
+            SimpleLogUtils.show("[ResolvePhoneActionHandler] resolvePhone failed: " + t);
             sekiroResponse.failed(t.getMessage() == null ? String.valueOf(t) : t.getMessage());
         }
     }

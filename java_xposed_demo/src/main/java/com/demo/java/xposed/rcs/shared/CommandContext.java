@@ -1,4 +1,4 @@
-package com.example.sekiro.shared;
+package com.demo.java.xposed.rcs.shared;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

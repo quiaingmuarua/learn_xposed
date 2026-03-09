@@ -4,10 +4,10 @@ import com.demo.java.xposed.rcs.apiCaller.cache.CachedGroupInfo;
 import com.demo.java.xposed.rcs.apiCaller.model.ChannelRequestParams;
 import com.demo.java.xposed.rcs.apiCaller.model.DbQueryParams;
 import com.demo.java.xposed.rcs.apiCaller.model.XpGrpcMethodEnum;
-import com.example.sekiro.shared.CommandException;
-import com.example.sekiro.shared.CommandHandler;
-import com.example.sekiro.shared.CommandRouter;
-import com.example.sekiro.shared.ErrorCode;
+import com.demo.java.xposed.rcs.shared.CommandException;
+import com.demo.java.xposed.rcs.shared.CommandHandler;
+import com.demo.java.xposed.rcs.shared.CommandRouter;
+import com.demo.java.xposed.rcs.shared.ErrorCode;
 
 import org.json.JSONObject;
 

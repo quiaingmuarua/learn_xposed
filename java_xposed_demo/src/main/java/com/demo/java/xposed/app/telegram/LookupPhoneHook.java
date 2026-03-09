@@ -1,7 +1,7 @@
 package com.demo.java.xposed.app.telegram;
 
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.telegram.TLJsonLike;
+import com.example.sekiro.telegram.base.TLJsonLike;
 
 import java.util.Arrays;
 import java.util.Map;

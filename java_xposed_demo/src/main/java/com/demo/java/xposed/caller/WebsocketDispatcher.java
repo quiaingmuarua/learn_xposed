@@ -1,6 +1,6 @@
 package com.demo.java.xposed.caller;
 
-import com.example.sekiro.shared.ApiResponse;
+import com.demo.java.xposed.rcs.shared.ApiResponse;
 import com.demo.java.xposed.rcs.apiCaller.core.XposedCommandRouter;
 import com.demo.java.xposed.utils.LogUtils;
 import com.google.gson.Gson;

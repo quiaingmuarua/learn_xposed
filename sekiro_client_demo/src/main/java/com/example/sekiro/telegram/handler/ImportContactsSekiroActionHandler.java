@@ -1,8 +1,12 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.handler;
 
 import android.content.Context;
 
 
+import com.example.sekiro.telegram.TelegramEnv;
+import com.example.sekiro.telegram.TelegramRequestFactory;
+import com.example.sekiro.telegram.base.TelegramResponseSerializer;
+import com.example.sekiro.telegram.base.TelegramRpcInvoker;
 import com.example.sekiro.telegram.model.ImportContactItem;
 import com.example.sekiro.util.SimpleLogUtils;
 import com.google.gson.Gson;

@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.base;
 
 import java.lang.reflect.*;
 import java.nio.ByteBuffer;
