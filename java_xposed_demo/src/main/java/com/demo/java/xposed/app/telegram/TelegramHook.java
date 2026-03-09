@@ -9,7 +9,6 @@ import com.demo.java.xposed.device.PluginInit;
 import com.demo.java.xposed.device.TelephonyHook;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
-import com.example.sekiro.SekiroClientManager;
 import com.google.gson.Gson;
 
 import java.util.TimeZone;
@@ -93,7 +92,7 @@ public class TelegramHook {
             LogUtils.show("MainActivity 拿到appVersion= " + appVersion);
             processHook(loadPackageParam, appVersion);
             getSharedPreferencesResult(mContext);
-            SekiroClientManager.initClient(mContext,"telegram");
+
 
 
         } catch (Exception e) {

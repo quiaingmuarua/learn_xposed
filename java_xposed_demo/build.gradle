@@ -119,7 +119,7 @@ dependencies {
     // Xposed 框架库
     compileOnly fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':sekiro_client_demo')
+    implementation project(':xposed_command_router')
     implementation('cn.iinti.sekiro3.business:sekiro-business-api:1.5')
 
     // 测试依赖

@@ -37,6 +37,7 @@ dependencyResolutionManagement {
 rootProject.name = "learn_xposed"
 include ':app'
 include ':java_xposed_demo'
-include ':sekiro_client_demo'
+include ':xposed_command_router'
 include ':framework_trace_xposed'
 include ':ndk_xposed_demo'
+include ':sekiro_xposed_demo'
