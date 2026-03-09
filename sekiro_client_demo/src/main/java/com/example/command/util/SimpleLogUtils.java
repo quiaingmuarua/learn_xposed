@@ -1,4 +1,4 @@
-package com.example.sekiro.util;
+package com.example.command.util;
 
 import android.util.Log;
 

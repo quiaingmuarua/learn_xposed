@@ -3,7 +3,7 @@ package com.example.command.core;
 import com.example.command.model.ApiResponse;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import org.json.JSONObject;
 
@@ -19,8 +19,6 @@ public class CommandRouter {
     private static final Map<String, RegisteredHandler<?, ?>> handlers = new ConcurrentHashMap<>();
     private static final Map<Class<?>, Function<JSONObject, ?>> defaultResolvers = new ConcurrentHashMap<>();
 
-    private CommandRouter() {
-    }
 
     public static <T> void registerDefaultResolver(Class<T> clazz, Function<JSONObject, T> resolver) {
         defaultResolvers.put(clazz, resolver);

@@ -1,8 +1,8 @@
-package com.example.sekiro.messages;
-import com.example.sekiro.messages.cache.XposedClassCacher;
+package com.example.messages;
+import com.example.messages.cache.XposedClassCacher;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import java.util.Map;
 import java.util.concurrent.ArrayBlockingQueue;

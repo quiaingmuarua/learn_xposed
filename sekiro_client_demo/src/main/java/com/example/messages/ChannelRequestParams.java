@@ -1,9 +1,9 @@
-package com.example.sekiro.messages;
+package com.example.messages;
 
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
-import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.messages.model.XpGrpcMethodEnum;
+import com.example.command.util.SimpleLogUtils;
 
 
 import java.io.UnsupportedEncodingException;

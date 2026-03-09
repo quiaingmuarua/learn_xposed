@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram.base;
+package com.example.telegram.base;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

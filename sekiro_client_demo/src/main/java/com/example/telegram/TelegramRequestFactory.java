@@ -1,7 +1,7 @@
-package com.example.sekiro.telegram;
+package com.example.telegram;
 
 import com.example.command.core.CommandContext;
-import com.example.sekiro.telegram.model.ImportContactItem;
+import com.example.telegram.model.ImportContactItem;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

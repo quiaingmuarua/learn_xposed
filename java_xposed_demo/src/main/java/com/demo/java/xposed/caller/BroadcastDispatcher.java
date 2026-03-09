@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.demo.java.xposed.rcs.apiCaller.manager.ActionHandlerManager;
-import com.example.sekiro.messages.ChannelRequestParams;
+import com.example.messages.ChannelRequestParams;
 import com.demo.java.xposed.utils.LogUtils;
 
 import java.util.Arrays;

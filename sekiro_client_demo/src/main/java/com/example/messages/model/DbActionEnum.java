@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.model;
+package com.example.messages.model;
 
 public enum DbActionEnum {
     DB_QUERY("dbQuery"),

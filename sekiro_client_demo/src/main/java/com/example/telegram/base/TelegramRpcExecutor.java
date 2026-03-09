@@ -1,6 +1,6 @@
-package com.example.sekiro.telegram.base;
+package com.example.telegram.base;
 
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 public class TelegramRpcExecutor {
 

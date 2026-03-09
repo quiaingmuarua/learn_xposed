@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.model;
+package com.example.messages.model;
 
 import java.util.List;
 

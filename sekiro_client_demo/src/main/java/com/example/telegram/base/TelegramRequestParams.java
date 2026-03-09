@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram.base;
+package com.example.telegram.base;
 
 
 public class TelegramRequestParams {

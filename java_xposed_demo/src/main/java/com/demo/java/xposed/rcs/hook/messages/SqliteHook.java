@@ -2,7 +2,7 @@ package com.demo.java.xposed.rcs.hook.messages;
 
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.utils.LogUtils;
-import com.example.sekiro.messages.cache.CacheMessageInfo;
+import com.example.messages.cache.CacheMessageInfo;
 
 import java.util.Arrays;
 

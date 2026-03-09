@@ -1,12 +1,12 @@
-package com.example.sekiro.telegram;
+package com.example.telegram;
 
 import com.example.command.core.CommandRouter;
 import com.example.command.core.CommandContext;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
-import com.example.sekiro.telegram.base.TelegramRequestParams;
-import com.example.sekiro.telegram.base.TelegramRpcExecutor;
-import com.example.sekiro.telegram.model.ImportContactItem;
+import com.example.telegram.base.TelegramRequestParams;
+import com.example.telegram.base.TelegramRpcExecutor;
+import com.example.telegram.model.ImportContactItem;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.json.JSONObject;

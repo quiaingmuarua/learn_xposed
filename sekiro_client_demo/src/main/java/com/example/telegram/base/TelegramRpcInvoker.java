@@ -1,10 +1,10 @@
-package com.example.sekiro.telegram.base;
+package com.example.telegram.base;
 
 
 
 import com.example.command.core.PendingRequest;
 import com.example.command.core.CommandContext;
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

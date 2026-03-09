@@ -1,8 +1,8 @@
-package com.example.sekiro.messages.cache;
+package com.example.messages.cache;
 
 
-import com.example.sekiro.messages.model.XpGroupInfo;
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.messages.model.XpGroupInfo;
+import com.example.command.util.SimpleLogUtils;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

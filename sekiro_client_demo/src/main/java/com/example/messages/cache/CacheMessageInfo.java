@@ -1,6 +1,6 @@
-package com.example.sekiro.messages.cache;
+package com.example.messages.cache;
 
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import java.lang.ref.WeakReference;
 

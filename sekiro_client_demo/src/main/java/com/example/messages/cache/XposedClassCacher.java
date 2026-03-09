@@ -1,7 +1,7 @@
-package com.example.sekiro.messages.cache;
+package com.example.messages.cache;
 
 
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;

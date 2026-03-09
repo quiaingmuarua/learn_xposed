@@ -5,7 +5,7 @@ import static com.example.sekiro.SekiroLambda.action;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.sekiro.util.SimpleLogUtils;
+import com.example.command.util.SimpleLogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ import cn.iinti.sekiro3.business.api.SekiroClient;
 import cn.iinti.sekiro3.business.api.interfaze.ActionHandler;
 import cn.iinti.sekiro3.business.api.interfaze.HandlerRegistry;
 
-public class SekiroUtil {
+public class SekiroClientInit {
     private static volatile SekiroClient client;
     private static boolean started = false;
 
@@ -85,7 +85,7 @@ public class SekiroUtil {
         List<ActionHandler> handlers = new ArrayList<>();
 
         handlers.add(action("version", (req, resp) -> {
-            resp.success("3.0");
+            resp.success("4.0");
         }));
 
         handlers.add(action("info", (req, resp) -> {
