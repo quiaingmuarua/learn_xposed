@@ -1,7 +1,8 @@
-package com.example.sekiro.messages.model;
+package com.example.sekiro.messages;
 
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
+import com.example.sekiro.messages.model.XpGrpcMethodEnum;
 import com.example.sekiro.util.SimpleLogUtils;
 
 

@@ -1,7 +1,7 @@
-package com.example.sekiro.messages.core;
+package com.example.sekiro.messages;
 import com.example.sekiro.messages.cache.XposedClassCacher;
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import java.util.Map;

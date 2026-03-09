@@ -3,10 +3,10 @@
 //import com.demo.java.xposed.rcs.apiCaller.manager.ActionHandlerManager;
 //import com.demo.java.xposed.rcs.apiCaller.manager.DbHandlerManager;
 //import com.demo.java.xposed.rcs.apiCaller.manager.InnerHandlerManager;
-//import com.example.sekiro.messages.core.CommandRouter;
+//import com.example.sekiro.client.CommandRouter;
 //import com.example.sekiro.messages.model.DbActionEnum;
 //import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-//import com.example.sekiro.messages.shared.CachedGroupInfo;
+//import com.example.sekiro.messages.cache.CachedGroupInfo;
 //
 //import de.robv.android.xposed.callbacks.XC_LoadPackage;
 //

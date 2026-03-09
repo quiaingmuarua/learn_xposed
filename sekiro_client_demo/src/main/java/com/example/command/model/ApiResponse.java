@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.shared;
+package com.example.command.model;
 
 public class ApiResponse<T> {
     public String status;   // "ok" / "error"

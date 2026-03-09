@@ -2,14 +2,13 @@ package com.example.sekiro;
 
 import android.content.Context;
 
-import com.example.sekiro.messages.shared.CommandContext;
+import com.example.command.core.CommandContext;
 import com.example.sekiro.telegram.TelegramCommandRegistry;
 import com.example.sekiro.telegram.TelegramSekiroActions;
-import com.example.sekiro.telegram.base.TelegramRequestFactory;
+import com.example.sekiro.telegram.TelegramRequestFactory;
 import com.example.sekiro.telegram.base.TelegramResponseSerializer;
 import com.example.sekiro.telegram.base.TelegramRpcExecutor;
 import com.example.sekiro.telegram.base.TelegramRpcInvoker;
-import com.example.sekiro.telegram.client.SekiroUtil;
 
 public class SekiroClientManager {
 

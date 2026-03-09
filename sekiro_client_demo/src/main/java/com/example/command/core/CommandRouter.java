@@ -1,10 +1,8 @@
-package com.example.sekiro.messages.core;
+package com.example.command.core;
 
-import com.example.sekiro.messages.shared.ApiResponse;
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.CommandHandler;
-import com.example.sekiro.messages.shared.ErrorCode;
-import com.example.sekiro.messages.shared.RegisteredHandler;
+import com.example.command.model.ApiResponse;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import org.json.JSONObject;

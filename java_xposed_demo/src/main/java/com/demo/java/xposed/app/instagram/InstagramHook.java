@@ -6,7 +6,7 @@ import android.content.Context;
 import com.demo.java.xposed.base.BaseAppHook;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
-import com.example.sekiro.telegram.client.SekiroUtil;
+import com.example.sekiro.SekiroUtil;
 
 import org.json.JSONObject;
 

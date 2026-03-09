@@ -8,12 +8,12 @@ import com.demo.java.xposed.rcs.apiCaller.cache.CachedUnaryRpc;
 import com.demo.java.xposed.rcs.hook.messages.Rcs;
 import com.demo.java.xposed.utils.LogUtils;
 import com.example.sekiro.messages.cache.XposedClassCacher;
-import com.example.sekiro.messages.core.GrpcCallSender;
-import com.example.sekiro.messages.model.ChannelRequestParams;
+import com.example.sekiro.messages.GrpcCallSender;
+import com.example.sekiro.messages.ChannelRequestParams;
 import com.example.sekiro.messages.model.XpGrpcMethodEnum;
-import com.example.sekiro.messages.shared.CachedGroupInfo;
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.sekiro.messages.cache.CachedGroupInfo;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
 
 import java.util.EnumMap;
 import java.util.List;

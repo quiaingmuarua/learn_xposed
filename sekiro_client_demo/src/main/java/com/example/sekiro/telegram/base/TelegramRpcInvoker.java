@@ -2,7 +2,8 @@ package com.example.sekiro.telegram.base;
 
 
 
-import com.example.sekiro.messages.shared.CommandContext;
+import com.example.command.core.PendingRequest;
+import com.example.command.core.CommandContext;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import java.lang.reflect.Method;

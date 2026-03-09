@@ -1,4 +1,6 @@
-package com.example.sekiro.messages.shared;
+package com.example.command.core;
+
+import com.example.command.model.ApiResponse;
 
 import org.json.JSONObject;
 

@@ -6,8 +6,8 @@ import static com.demo.java.xposed.base.BaseAppHook.protoObjToHex;
 
 import android.text.TextUtils;
 
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
 import com.demo.java.xposed.rcs.hook.messages.Rcs.TachyonRegistrationToken;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.collection.StringUtils;

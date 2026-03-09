@@ -1,9 +1,9 @@
 package com.example.sekiro.telegram;
 
-import static com.example.sekiro.telegram.client.SekiroLambda.action;
+import static com.example.sekiro.SekiroLambda.action;
 
-import com.example.sekiro.messages.shared.ApiResponse;
-import com.example.sekiro.messages.core.CommandRouter;
+import com.example.command.model.ApiResponse;
+import com.example.command.core.CommandRouter;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import org.json.JSONObject;

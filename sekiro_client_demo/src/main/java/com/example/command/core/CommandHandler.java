@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.shared;
+package com.example.command.core;
 
 @FunctionalInterface
 public interface CommandHandler<T, V> {

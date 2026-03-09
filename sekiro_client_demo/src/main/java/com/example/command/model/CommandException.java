@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.shared;
+package com.example.command.model;
 
 
 public class CommandException extends RuntimeException {

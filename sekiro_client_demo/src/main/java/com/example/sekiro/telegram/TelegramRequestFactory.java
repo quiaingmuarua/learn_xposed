@@ -1,6 +1,6 @@
-package com.example.sekiro.telegram.base;
+package com.example.sekiro.telegram;
 
-import com.example.sekiro.messages.shared.CommandContext;
+import com.example.command.core.CommandContext;
 import com.example.sekiro.telegram.model.ImportContactItem;
 
 import java.lang.reflect.Field;

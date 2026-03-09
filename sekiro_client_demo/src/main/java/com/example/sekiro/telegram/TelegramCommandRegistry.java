@@ -1,10 +1,9 @@
 package com.example.sekiro.telegram;
 
-import com.example.sekiro.messages.core.CommandRouter;
-import com.example.sekiro.messages.shared.CommandContext;
-import com.example.sekiro.messages.shared.CommandException;
-import com.example.sekiro.messages.shared.ErrorCode;
-import com.example.sekiro.telegram.base.TelegramRequestFactory;
+import com.example.command.core.CommandRouter;
+import com.example.command.core.CommandContext;
+import com.example.command.model.CommandException;
+import com.example.command.model.ErrorCode;
 import com.example.sekiro.telegram.base.TelegramRequestParams;
 import com.example.sekiro.telegram.base.TelegramRpcExecutor;
 import com.example.sekiro.telegram.model.ImportContactItem;

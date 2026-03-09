@@ -10,7 +10,7 @@ import com.demo.java.xposed.rcs.model.MsgItem;
 import com.demo.java.xposed.rcs.model.SendMsgKeyInfo;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.collection.StringUtils;
-import com.example.sekiro.messages.shared.CachedGroupInfo;
+import com.example.sekiro.messages.cache.CachedGroupInfo;
 
 import java.util.Arrays;
 

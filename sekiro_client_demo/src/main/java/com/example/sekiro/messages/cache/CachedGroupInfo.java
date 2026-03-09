@@ -1,4 +1,4 @@
-package com.example.sekiro.messages.shared;
+package com.example.sekiro.messages.cache;
 
 
 import com.example.sekiro.messages.model.XpGroupInfo;
