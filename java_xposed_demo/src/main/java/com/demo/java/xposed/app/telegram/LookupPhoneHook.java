@@ -2,6 +2,7 @@ package com.demo.java.xposed.app.telegram;
 
 import com.demo.java.xposed.utils.LogUtils;
 import com.example.sekiro.telegram.base.TLJsonLike;
+import com.example.sekiro.telegram.base.TelegramResponseSerializer;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -48,19 +49,8 @@ public class LookupPhoneHook   {
                 LogUtils.printParams("ConnectionsManager sendRequest "+ Arrays.toString(param.args));
 
                 Object response = param.args[0]; // or param.args[x]
-                TLJsonLike.Options opt = new TLJsonLike.Options();
-                opt.maxDepth = 10;
-                opt.maxCollectionSize = 80;
-                opt.maxBytesPreview = 128;
-                Map<String, Object> map = TLJsonLike.toMap(response, opt);
-                // 你可以用 Gson 对 Map 输出（这时 Gson 只负责 Map->json，不直接反射 TLObject）
-                String json = new com.google.gson.GsonBuilder()
-                        .serializeNulls() // 如果你 opt.includeNulls=true 才建议开
-                        .create()
-                        .toJson(map);
-
-
-                LogUtils.show("ConnectionsManager TLObjectClass "+ json);
+                TelegramResponseSerializer serializer = new TelegramResponseSerializer();
+                LogUtils.show("ConnectionsManager TLObjectClass "+  serializer.toJson(response));
             }
 
             @Override

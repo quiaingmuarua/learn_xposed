@@ -1,4 +1,4 @@
-package com.example.sekiro.telegram;
+package com.example.sekiro.telegram.base;
 
 import com.example.sekiro.telegram.model.ImportContactItem;
 

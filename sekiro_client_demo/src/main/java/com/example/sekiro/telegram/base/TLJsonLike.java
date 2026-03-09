@@ -10,7 +10,7 @@ import java.util.*;
  * - Handles byte[], ByteBuffer (direct/heap), and "NativeByteBuffer-like" objects by reflection if possible
  * - Cycle-safe, depth-limited
  */
-public final class TLJsonLike {
+final class TLJsonLike {
 
     public static class Options {
         /** max recursion depth to avoid huge graphs */

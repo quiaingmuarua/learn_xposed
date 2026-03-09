@@ -2,7 +2,6 @@ package com.example.sekiro.telegram.base;
 
 
 
-import com.example.sekiro.telegram.TelegramEnv;
 import com.example.sekiro.util.SimpleLogUtils;
 
 import java.lang.reflect.Method;
