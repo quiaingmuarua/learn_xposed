@@ -3,6 +3,7 @@ package com.example.demo.sekiro.base;
 import android.content.Context;
 
 import com.example.command.core.CommandContext;
+import com.example.command.util.SimpleLogUtils;
 import com.example.demo.sekiro.client.TelegramSekiroActions;
 import com.example.telegram.TelegramCommandRegistry;
 import com.example.telegram.TelegramRequestFactory;
@@ -12,7 +13,13 @@ import com.example.telegram.base.TelegramRpcInvoker;
 
 public class SekiroClientManager {
 
-    public static void initClient(Context context, String targetApp) {
+
+    public static void initTgClient(Context context, String product) {
+        initClient(context, "telegram", product);
+    }
+
+    public static void initClient(Context context, String targetApp, String product) {
+        SimpleLogUtils.show("initClient product" + product);
         if ("telegram".equals(targetApp)) {
             initTelegram(context);
         }

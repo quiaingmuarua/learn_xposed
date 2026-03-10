@@ -53,7 +53,7 @@ public class TelegramSekiroHook {
             }
             isProcessInit = true;
             mLoader = mContext.getClassLoader();
-            SekiroClientManager.initClient(mContext,"telegram");
+            SekiroClientManager.initTgClient(mContext,"test");
 
         } catch (Exception e) {
             SimpleLogUtils.printStackErrInfo("RcsApplicationHook run Exception", e);
