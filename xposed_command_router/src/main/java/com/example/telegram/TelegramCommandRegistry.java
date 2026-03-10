@@ -8,6 +8,7 @@ import com.example.telegram.base.TelegramRequestParams;
 import com.example.telegram.base.TelegramRpcExecutor;
 import com.example.telegram.model.TelegramContact;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public final class TelegramCommandRegistry {
     private static final long DEFAULT_IMPORT_TIMEOUT_MS = 10000L;
     private static final long DEFAULT_DELETE_TIMEOUT_MS = 10000L;
     private static final long DEFAULT_IMPORT_AND_DELETE_TIMEOUT_MS = 15000L;
+
     private TelegramCommandRegistry() {
     }
 
@@ -75,6 +77,82 @@ public final class TelegramCommandRegistry {
         );
     }
 
+    private static String handleImportContactsAndDelete(JSONObject json, CommandContext context) throws Exception {
+        long workflowTimeoutMs = parseTimeout(json, DEFAULT_IMPORT_AND_DELETE_TIMEOUT_MS);
+
+        List<TelegramContact> importContacts = parseImportContacts(json);
+        if (importContacts.isEmpty()) {
+            throw new CommandException(ErrorCode.PARSE_ERROR, "missing contacts");
+        }
+
+        long importTimeoutMs = extractStageTimeout(json, "importTimeout", Math.min(workflowTimeoutMs, 10000L));
+        long deleteTimeoutMs = extractStageTimeout(json, "deleteTimeout", Math.min(workflowTimeoutMs, 10000L));
+
+        String importResult = doImportContacts(context, importContacts, importTimeoutMs);
+
+        List<TelegramContact> deleteContacts = extractDeleteContactsFromImportResult(importResult);
+        if (deleteContacts.isEmpty()) {
+            return buildDeleteSkippedResult(importResult);
+        }
+
+        String deleteResult = doDeleteContacts(context, deleteContacts, deleteTimeoutMs);
+        return buildImportAndDeleteResult(importResult, deleteResult, deleteContacts.size());
+    }
+
+    private static String doImportContacts(
+            CommandContext context,
+            List<TelegramContact> contacts,
+            long timeoutMs
+    ) throws Exception {
+        return executeTelegram(
+                context,
+                new TelegramRequestParams(
+                        "importContactsAndDelete#import",
+                        "size=" + contacts.size(),
+                        timeoutMs
+                ),
+                factory -> factory.createImportContactsRequest(contacts)
+        );
+    }
+
+    private static String doDeleteContacts(
+            CommandContext context,
+            List<TelegramContact> contacts,
+            long timeoutMs
+    ) throws Exception {
+        return executeTelegram(
+                context,
+                new TelegramRequestParams(
+                        "importContactsAndDelete#delete",
+                        "size=" + contacts.size(),
+                        timeoutMs
+                ),
+                factory -> factory.createDeleteContactsRequest(contacts)
+        );
+    }
+
+    private static String buildDeleteSkippedResult(String importResult) throws JSONException {
+        JSONObject result = new JSONObject();
+        result.put("ok", true);
+        result.put("importResult", safeToJsonObject(importResult));
+        result.put("deleteSkipped", true);
+        result.put("deleteReason", "no users with id/access_hash extracted from import result");
+        return result.toString();
+    }
+
+    private static String buildImportAndDeleteResult(
+            String importResult,
+            String deleteResult,
+            int deleteCount
+    ) throws JSONException {
+        JSONObject result = new JSONObject();
+        result.put("ok", true);
+        result.put("importResult", safeToJsonObject(importResult));
+        result.put("deleteResult", safeToJsonObject(deleteResult));
+        result.put("deleteCount", deleteCount);
+        return result.toString();
+    }
+
     private static String executeTelegram(
             CommandContext context,
             TelegramRequestParams params,
@@ -91,6 +169,11 @@ public final class TelegramCommandRegistry {
 
     private static long parseTimeout(JSONObject json, long defaultValue) {
         long value = CommandRouter.extractLong(json, defaultValue, "timeout");
+        return value > 0 ? value : defaultValue;
+    }
+
+    private static long extractStageTimeout(JSONObject json, String key, long defaultValue) {
+        long value = json.optLong(key, defaultValue);
         return value > 0 ? value : defaultValue;
     }
 
@@ -218,72 +301,6 @@ public final class TelegramCommandRegistry {
         return result;
     }
 
-
-
-    private static String handleImportContactsAndDelete(JSONObject json, CommandContext context) throws Exception {
-        long totalTimeoutMs = parseTimeout(json, DEFAULT_IMPORT_AND_DELETE_TIMEOUT_MS);
-
-        List<TelegramContact> importContacts = parseImportContacts(json);
-        if (importContacts.isEmpty()) {
-            throw new CommandException(ErrorCode.PARSE_ERROR, "missing contacts");
-        }
-
-        TelegramRequestFactory requestFactory = context.require(TelegramRequestFactory.class);
-        TelegramRpcExecutor rpcExecutor = context.require(TelegramRpcExecutor.class);
-
-        long importTimeoutMs = extractStageTimeout(json, "importTimeout", Math.min(totalTimeoutMs, 10000L));
-        long deleteTimeoutMs = extractStageTimeout(json, "deleteTimeout", Math.min(totalTimeoutMs, 10000L));
-
-        // 1. import
-        String importResult = rpcExecutor.executeSync(
-                new TelegramRequestParams(
-                        "importContactsAndDelete#import",
-                        "size=" + importContacts.size(),
-                        importTimeoutMs
-                ),
-                () -> requestFactory.createImportContactsRequest(importContacts)
-        );
-
-        // 2. 从 import 返回里提取 users -> delete contacts
-        List<TelegramContact> deleteContacts = extractDeleteContactsFromImportResult(importResult);
-
-        // 没有可删除对象时，直接返回 import 结果
-        if (deleteContacts.isEmpty()) {
-            JSONObject result = new JSONObject();
-            result.put("ok", true);
-            result.put("importResult", safeToJsonObject(importResult));
-            result.put("deleteSkipped", true);
-            result.put("deleteReason", "no users with id/access_hash extracted from import result");
-            return result.toString();
-        }
-
-        // 3. delete
-        String deleteResult = rpcExecutor.executeSync(
-                new TelegramRequestParams(
-                        "importContactsAndDelete#delete",
-                        "size=" + deleteContacts.size(),
-                        deleteTimeoutMs
-                ),
-                () -> requestFactory.createDeleteContactsRequest(deleteContacts)
-        );
-
-        // 4. 合并结果
-        JSONObject result = new JSONObject();
-        result.put("ok", true);
-        result.put("importResult", safeToJsonObject(importResult));
-        result.put("deleteResult", safeToJsonObject(deleteResult));
-        result.put("deleteCount", deleteContacts.size());
-        return result.toString();
-    }
-
-
-    private static long extractStageTimeout(JSONObject json, String key, long defaultValue) {
-        long value = json.optLong(key, defaultValue);
-        return value > 0 ? value : defaultValue;
-    }
-
-
-
     private static List<TelegramContact> extractDeleteContactsFromImportResult(String importResult) {
         List<TelegramContact> result = new ArrayList<>();
         if (importResult == null || importResult.trim().isEmpty()) {
@@ -317,7 +334,6 @@ public final class TelegramCommandRegistry {
 
         return result;
     }
-
 
     private static Object safeToJsonObject(String jsonText) {
         if (jsonText == null) {

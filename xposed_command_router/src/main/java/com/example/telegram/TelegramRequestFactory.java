@@ -110,7 +110,7 @@ public class TelegramRequestFactory {
     }
 
     private void setField(Class<?> clazz, Object target, String fieldName, Object value) throws Exception {
-        Field field = clazz.getDeclaredField(fieldName);
+        Field field = clazz.getField(fieldName);
         field.setAccessible(true);
         field.set(target, value);
     }
