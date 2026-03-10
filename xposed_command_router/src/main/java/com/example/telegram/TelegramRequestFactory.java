@@ -1,7 +1,7 @@
 package com.example.telegram;
 
 import com.example.command.core.CommandContext;
-import com.example.telegram.model.ImportContactItem;
+import com.example.telegram.model.TelegramContact;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -9,15 +9,14 @@ import java.util.List;
 
 public class TelegramRequestFactory {
 
-    private final CommandContext env;
+    private final CommandContext context;
 
-
-    public TelegramRequestFactory(CommandContext env) {
-        this.env = env;
+    public TelegramRequestFactory(CommandContext context) {
+        this.context = context;
     }
 
     public Object createResolvePhoneRequest(String phoneNumber) throws Exception {
-        Class<?> clazz = env.loadClass("org.telegram.tgnet.TLRPC$TL_contacts_resolvePhone");
+        Class<?> clazz = context.loadClass("org.telegram.tgnet.TLRPC$TL_contacts_resolvePhone");
         Object req = clazz.getDeclaredConstructor().newInstance();
 
         Field phoneField = clazz.getDeclaredField("phone");
@@ -27,13 +26,13 @@ public class TelegramRequestFactory {
         return req;
     }
 
-    public Object createImportContactsRequest(List<ImportContactItem> items) throws Exception {
+    public Object createImportContactsRequest(List<TelegramContact> items) throws Exception {
         if (items == null || items.isEmpty()) {
             throw new IllegalArgumentException("contacts is empty");
         }
 
-        Class<?> reqClass = env.loadClass("org.telegram.tgnet.TLRPC$TL_contacts_importContacts");
-        Class<?> inputPhoneContactClass = env.loadClass("org.telegram.tgnet.TLRPC$TL_inputPhoneContact");
+        Class<?> reqClass = context.loadClass("org.telegram.tgnet.TLRPC$TL_contacts_importContacts");
+        Class<?> inputPhoneContactClass = context.loadClass("org.telegram.tgnet.TLRPC$TL_inputPhoneContact");
 
         Object req = reqClass.getDeclaredConstructor().newInstance();
 
@@ -43,7 +42,11 @@ public class TelegramRequestFactory {
         List<Object> contacts = new ArrayList<>();
 
         for (int i = 0; i < items.size(); i++) {
-            ImportContactItem item = items.get(i);
+            TelegramContact item = items.get(i);
+            if (!item.canImport()) {
+                continue;
+            }
+
             Object contact = inputPhoneContactClass.getDeclaredConstructor().newInstance();
 
             setField(inputPhoneContactClass, contact, "client_id", buildClientId(item, i));
@@ -54,11 +57,51 @@ public class TelegramRequestFactory {
             contacts.add(contact);
         }
 
+        if (contacts.isEmpty()) {
+            throw new IllegalArgumentException("contacts is empty");
+        }
+
         contactsField.set(req, contacts);
         return req;
     }
 
-    private long buildClientId(ImportContactItem item, int index) {
+    public Object createDeleteContactsRequest(List<TelegramContact> items) throws Exception {
+        if (items == null || items.isEmpty()) {
+            throw new IllegalArgumentException("delete contacts is empty");
+        }
+
+        Class<?> reqClass = context.loadClass("org.telegram.tgnet.TLRPC$TL_contacts_deleteContacts");
+        Class<?> inputUserClass = context.loadClass("org.telegram.tgnet.TLRPC$TL_inputUser");
+
+        Object req = reqClass.getDeclaredConstructor().newInstance();
+
+        Field idField = reqClass.getDeclaredField("id");
+        idField.setAccessible(true);
+
+        List<Object> inputUsers = new ArrayList<>();
+
+        for (TelegramContact item : items) {
+            if (!item.canDelete()) {
+                continue;
+            }
+
+            Object inputUser = inputUserClass.getDeclaredConstructor().newInstance();
+
+            setField(inputUserClass, inputUser, "user_id", item.getUserId());
+            setField(inputUserClass, inputUser, "access_hash", item.getAccessHash());
+
+            inputUsers.add(inputUser);
+        }
+
+        if (inputUsers.isEmpty()) {
+            throw new IllegalArgumentException("delete contacts is empty");
+        }
+
+        idField.set(req, inputUsers);
+        return req;
+    }
+
+    private long buildClientId(TelegramContact item, int index) {
         long base = item.getClientId();
         if (base == 0L) {
             base = System.currentTimeMillis() & 0xFFFFFFFFL;

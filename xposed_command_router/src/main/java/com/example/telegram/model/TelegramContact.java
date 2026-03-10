@@ -1,20 +1,28 @@
 package com.example.telegram.model;
 
 
-public class ImportContactItem {
+public class TelegramContact {
     private long clientId;
     private String phone;
     private String firstName;
     private String lastName;
 
-    public ImportContactItem() {
+    private long userId;
+    private long accessHash;
+
+    public TelegramContact() {
     }
 
-    public ImportContactItem(long clientId, String phone, String firstName, String lastName) {
+    public TelegramContact(long clientId, String phone, String firstName, String lastName) {
         this.clientId = clientId;
         this.phone = phone;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public TelegramContact(long userId, long accessHash) {
+        this.userId = userId;
+        this.accessHash = accessHash;
     }
 
     public long getClientId() {
@@ -47,5 +55,29 @@ public class ImportContactItem {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getAccessHash() {
+        return accessHash;
+    }
+
+    public void setAccessHash(long accessHash) {
+        this.accessHash = accessHash;
+    }
+
+    public boolean canImport() {
+        return phone != null && !phone.trim().isEmpty();
+    }
+
+    public boolean canDelete() {
+        return userId != 0L && accessHash != 0L;
     }
 }

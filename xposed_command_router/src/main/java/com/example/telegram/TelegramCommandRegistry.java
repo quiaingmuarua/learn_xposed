@@ -1,14 +1,15 @@
 package com.example.telegram;
 
-import com.example.command.core.CommandRouter;
 import com.example.command.core.CommandContext;
+import com.example.command.core.CommandRouter;
 import com.example.command.model.CommandException;
 import com.example.command.model.ErrorCode;
 import com.example.telegram.base.TelegramRequestParams;
 import com.example.telegram.base.TelegramRpcExecutor;
-import com.example.telegram.model.ImportContactItem;
+import com.example.telegram.model.TelegramContact;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +17,8 @@ public final class TelegramCommandRegistry {
 
     private static final long DEFAULT_RESOLVE_TIMEOUT_MS = 8000L;
     private static final long DEFAULT_IMPORT_TIMEOUT_MS = 10000L;
-
+    private static final long DEFAULT_DELETE_TIMEOUT_MS = 10000L;
+    private static final long DEFAULT_IMPORT_AND_DELETE_TIMEOUT_MS = 15000L;
     private TelegramCommandRegistry() {
     }
 
@@ -28,7 +30,10 @@ public final class TelegramCommandRegistry {
     public static void registerAll() {
         CommandRouter.registerRaw("resolvePhone", TelegramCommandRegistry::handleResolvePhone);
         CommandRouter.registerRaw("importContacts", TelegramCommandRegistry::handleImportContacts);
+        CommandRouter.registerRaw("deleteContacts", TelegramCommandRegistry::handleDeleteContacts);
+        CommandRouter.registerRaw("importContactsAndDelete", TelegramCommandRegistry::handleImportContactsAndDelete);
     }
+
     private static String handleResolvePhone(JSONObject json, CommandContext context) throws Exception {
         String phone = CommandRouter.extractParam(json, "phone");
         long timeoutMs = parseTimeout(json, DEFAULT_RESOLVE_TIMEOUT_MS);
@@ -42,7 +47,7 @@ public final class TelegramCommandRegistry {
 
     private static String handleImportContacts(JSONObject json, CommandContext context) throws Exception {
         long timeoutMs = parseTimeout(json, DEFAULT_IMPORT_TIMEOUT_MS);
-        List<ImportContactItem> contacts = parseContacts(json);
+        List<TelegramContact> contacts = parseImportContacts(json);
 
         if (contacts.isEmpty()) {
             throw new CommandException(ErrorCode.PARSE_ERROR, "missing contacts");
@@ -52,6 +57,21 @@ public final class TelegramCommandRegistry {
                 context,
                 new TelegramRequestParams("importContacts", "size=" + contacts.size(), timeoutMs),
                 factory -> factory.createImportContactsRequest(contacts)
+        );
+    }
+
+    private static String handleDeleteContacts(JSONObject json, CommandContext context) throws Exception {
+        long timeoutMs = parseTimeout(json, DEFAULT_DELETE_TIMEOUT_MS);
+        List<TelegramContact> contacts = parseDeleteContacts(json);
+
+        if (contacts.isEmpty()) {
+            throw new CommandException(ErrorCode.PARSE_ERROR, "missing delete contacts");
+        }
+
+        return executeTelegram(
+                context,
+                new TelegramRequestParams("deleteContacts", "size=" + contacts.size(), timeoutMs),
+                factory -> factory.createDeleteContactsRequest(contacts)
         );
     }
 
@@ -74,8 +94,8 @@ public final class TelegramCommandRegistry {
         return value > 0 ? value : defaultValue;
     }
 
-    private static List<ImportContactItem> parseContacts(JSONObject json) {
-        List<ImportContactItem> result = new ArrayList<>();
+    private static List<TelegramContact> parseImportContacts(JSONObject json) {
+        List<TelegramContact> result = new ArrayList<>();
 
         String contactsJson = json.optString("contacts", null);
         if (contactsJson != null && !contactsJson.trim().isEmpty()) {
@@ -87,12 +107,15 @@ public final class TelegramCommandRegistry {
                         continue;
                     }
 
-                    long id = itemObj.optLong("id", 0L);
-                    String phone = itemObj.optString("phone", "");
-                    String name = itemObj.optString("name", "");
-                    String avatar = itemObj.optString("avatar", "");
+                    TelegramContact item = new TelegramContact();
+                    item.setClientId(itemObj.optLong("clientId", itemObj.optLong("id", 0L)));
+                    item.setPhone(itemObj.optString("phone", ""));
+                    item.setFirstName(itemObj.optString("firstName", ""));
+                    item.setLastName(itemObj.optString("lastName", ""));
 
-                    result.add(new ImportContactItem(id, phone, name, avatar));
+                    if (item.canImport()) {
+                        result.add(item);
+                    }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -104,40 +127,213 @@ public final class TelegramCommandRegistry {
         if (phonesJson != null && !phonesJson.trim().isEmpty()) {
             try {
                 JSONArray array = new JSONArray(phonesJson);
-                List<String> phones = new ArrayList<>();
                 for (int i = 0; i < array.length(); i++) {
                     String phone = array.optString(i, "");
-                    if (!phone.trim().isEmpty()) {
-                        phones.add(phone);
+                    if (phone == null || phone.trim().isEmpty()) {
+                        continue;
                     }
+
+                    TelegramContact item = new TelegramContact();
+                    item.setPhone(phone);
+                    item.setFirstName("");
+                    item.setLastName("");
+                    result.add(item);
                 }
-                return fromPhones(phones);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            return result;
         }
 
         String singlePhone = json.optString("phone", null);
         if (singlePhone != null && !singlePhone.trim().isEmpty()) {
-            result.add(new ImportContactItem(0L, singlePhone, "", ""));
-            return result;
+            TelegramContact item = new TelegramContact();
+            item.setPhone(singlePhone);
+            item.setFirstName("");
+            item.setLastName("");
+            result.add(item);
         }
 
         return result;
     }
 
-    private static List<ImportContactItem> fromPhones(List<String> phones) {
-        List<ImportContactItem> list = new ArrayList<>();
-        if (phones == null) {
-            return list;
+    private static List<TelegramContact> parseDeleteContacts(JSONObject json) {
+        List<TelegramContact> result = new ArrayList<>();
+
+        String contactsJson = json.optString("contacts", null);
+        if (contactsJson != null && !contactsJson.trim().isEmpty()) {
+            try {
+                JSONArray array = new JSONArray(contactsJson);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject itemObj = array.optJSONObject(i);
+                    if (itemObj == null) {
+                        continue;
+                    }
+
+                    TelegramContact item = new TelegramContact();
+                    item.setUserId(itemObj.optLong("userId", itemObj.optLong("id", 0L)));
+                    item.setAccessHash(itemObj.optLong("accessHash", itemObj.optLong("access_hash", 0L)));
+
+                    if (item.canDelete()) {
+                        result.add(item);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return result;
         }
 
-        for (String phone : phones) {
-            if (phone == null || phone.trim().isEmpty()) {
-                continue;
+        String usersJson = json.optString("users", null);
+        if (usersJson != null && !usersJson.trim().isEmpty()) {
+            try {
+                JSONArray array = new JSONArray(usersJson);
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject itemObj = array.optJSONObject(i);
+                    if (itemObj == null) {
+                        continue;
+                    }
+
+                    TelegramContact item = new TelegramContact();
+                    item.setUserId(itemObj.optLong("id", 0L));
+                    item.setAccessHash(itemObj.optLong("access_hash", 0L));
+
+                    if (item.canDelete()) {
+                        result.add(item);
+                    }
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            list.add(new ImportContactItem(0L, phone, "", ""));
+            return result;
         }
-        return list;
+
+        TelegramContact single = new TelegramContact();
+        single.setUserId(json.optLong("userId", 0L));
+        single.setAccessHash(json.optLong("accessHash", 0L));
+        if (single.canDelete()) {
+            result.add(single);
+        }
+
+        return result;
+    }
+
+
+
+    private static String handleImportContactsAndDelete(JSONObject json, CommandContext context) throws Exception {
+        long totalTimeoutMs = parseTimeout(json, DEFAULT_IMPORT_AND_DELETE_TIMEOUT_MS);
+
+        List<TelegramContact> importContacts = parseImportContacts(json);
+        if (importContacts.isEmpty()) {
+            throw new CommandException(ErrorCode.PARSE_ERROR, "missing contacts");
+        }
+
+        TelegramRequestFactory requestFactory = context.require(TelegramRequestFactory.class);
+        TelegramRpcExecutor rpcExecutor = context.require(TelegramRpcExecutor.class);
+
+        long importTimeoutMs = extractStageTimeout(json, "importTimeout", Math.min(totalTimeoutMs, 10000L));
+        long deleteTimeoutMs = extractStageTimeout(json, "deleteTimeout", Math.min(totalTimeoutMs, 10000L));
+
+        // 1. import
+        String importResult = rpcExecutor.executeSync(
+                new TelegramRequestParams(
+                        "importContactsAndDelete#import",
+                        "size=" + importContacts.size(),
+                        importTimeoutMs
+                ),
+                () -> requestFactory.createImportContactsRequest(importContacts)
+        );
+
+        // 2. 从 import 返回里提取 users -> delete contacts
+        List<TelegramContact> deleteContacts = extractDeleteContactsFromImportResult(importResult);
+
+        // 没有可删除对象时，直接返回 import 结果
+        if (deleteContacts.isEmpty()) {
+            JSONObject result = new JSONObject();
+            result.put("ok", true);
+            result.put("importResult", safeToJsonObject(importResult));
+            result.put("deleteSkipped", true);
+            result.put("deleteReason", "no users with id/access_hash extracted from import result");
+            return result.toString();
+        }
+
+        // 3. delete
+        String deleteResult = rpcExecutor.executeSync(
+                new TelegramRequestParams(
+                        "importContactsAndDelete#delete",
+                        "size=" + deleteContacts.size(),
+                        deleteTimeoutMs
+                ),
+                () -> requestFactory.createDeleteContactsRequest(deleteContacts)
+        );
+
+        // 4. 合并结果
+        JSONObject result = new JSONObject();
+        result.put("ok", true);
+        result.put("importResult", safeToJsonObject(importResult));
+        result.put("deleteResult", safeToJsonObject(deleteResult));
+        result.put("deleteCount", deleteContacts.size());
+        return result.toString();
+    }
+
+
+    private static long extractStageTimeout(JSONObject json, String key, long defaultValue) {
+        long value = json.optLong(key, defaultValue);
+        return value > 0 ? value : defaultValue;
+    }
+
+
+
+    private static List<TelegramContact> extractDeleteContactsFromImportResult(String importResult) {
+        List<TelegramContact> result = new ArrayList<>();
+        if (importResult == null || importResult.trim().isEmpty()) {
+            return result;
+        }
+
+        try {
+            JSONObject root = new JSONObject(importResult);
+            JSONArray users = root.optJSONArray("users");
+            if (users == null) {
+                return result;
+            }
+
+            for (int i = 0; i < users.length(); i++) {
+                JSONObject userObj = users.optJSONObject(i);
+                if (userObj == null) {
+                    continue;
+                }
+
+                TelegramContact contact = new TelegramContact();
+                contact.setUserId(userObj.optLong("id", 0L));
+                contact.setAccessHash(userObj.optLong("access_hash", 0L));
+
+                if (contact.canDelete()) {
+                    result.add(contact);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+
+    private static Object safeToJsonObject(String jsonText) {
+        if (jsonText == null) {
+            return JSONObject.NULL;
+        }
+
+        try {
+            return new JSONObject(jsonText);
+        } catch (Exception ignore) {
+        }
+
+        try {
+            return new JSONArray(jsonText);
+        } catch (Exception ignore) {
+        }
+
+        return jsonText;
     }
 }
