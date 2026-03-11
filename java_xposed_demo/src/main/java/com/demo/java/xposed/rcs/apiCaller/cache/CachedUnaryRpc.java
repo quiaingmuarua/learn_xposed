@@ -40,8 +40,11 @@ public class CachedUnaryRpc {
     }
 
     public static void cacheInternalGrpcChannel(Object internalGrpcChannel) throws ClassNotFoundException {
-        InternalGrpcChannel = internalGrpcChannel;
-        LogUtils.show("cache_obj InternalGrpcChannel InternalGrpcChannel= " + InternalGrpcChannel);
+        if(InternalGrpcChannel !=null){
+            LogUtils.show("cacheInternalGrpcChannel has_cached="+InternalGrpcChannel);
+        }
+        CachedUnaryRpc.InternalGrpcChannel = internalGrpcChannel;
+        LogUtils.show("cache_obj cacheInternalGrpcChannel InternalGrpcChannel= " + CachedUnaryRpc.InternalGrpcChannel);
     }
 
 
@@ -98,7 +101,7 @@ public class CachedUnaryRpc {
     }
 
     public static Object getInternalGrpcChannel() {
-        return InternalGrpcChannel;
+        return CachedUnaryRpc.InternalGrpcChannel;
     }
 
     public static Object getMetadata() {

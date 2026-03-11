@@ -8,14 +8,10 @@ import android.content.pm.PackageManager;
 import android.text.TextUtils;
 
 import com.demo.java.xposed.base.BaseAppHook;
-import com.demo.java.xposed.caller.WebsocketDispatcher;
-import com.demo.java.xposed.caller.XposedHttpServer;
 import com.demo.java.xposed.device.PluginInit;
-import com.demo.java.xposed.device.model.SimInfoModel;
 import com.demo.java.xposed.rcs.SimInfoFingerPrint;
-import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallHelper;
-import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallSender;
-
+import com.demo.java.xposed.caller.XposedHttpServer;
+import com.demo.java.xposed.sekiro.SekiroClientManager;
 import com.demo.java.xposed.rcs.hook.gms.SmsMessageHook;
 import com.demo.java.xposed.rcs.hook.messages.AutoRegisterHook;
 import com.demo.java.xposed.rcs.hook.messages.CommonMessageClass;
@@ -34,12 +30,12 @@ import com.demo.java.xposed.rcs.hook.protocol.TachyonTokenHook;
 import com.demo.java.xposed.rcs.model.KeyCommonInfo;
 import com.demo.java.xposed.rcs.model.KeyInfo;
 import com.demo.java.xposed.rcs.model.RegisterKeyInfo;
+import com.demo.java.xposed.device.model.SimInfoModel;
+import com.demo.java.xposed.caller.WebsocketDispatcher;
 import com.demo.java.xposed.utils.CacheUtils;
 import com.demo.java.xposed.utils.LogUtils;
 import com.demo.java.xposed.utils.PrintStack;
 import com.demo.java.xposed.utils.ReliableWebSocketClient;
-import com.example.messages.cache.XposedClassCacher;
-import com.example.command.core.CommandContext;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -122,7 +118,8 @@ public class RcsApplicationHook extends BaseAppHook {
             appVersion = appVersion(mContext);
             LogUtils.show("MainActivity 拿到appVersion= " + appVersion);
             getSharedPreferences(mContext);
-            CommandContext.init(mContext);
+            SekiroClientManager.initRcsClient(mContext,"test");
+//            CommandContext.initMessagesContext(mContext);
             CacheUtils.checkAndRecordLaunchTime(mContext);
 //            initWebSocket(mContext,mLoader);
             processHook(loadPackageParam, appVersion);
@@ -150,13 +147,13 @@ public class RcsApplicationHook extends BaseAppHook {
 
             CommonMessageClass.run(loadPackageParam);
             RegisterHook.run(loadPackageParam);
-            XposedClassCacher.run(loadPackageParam.classLoader);
-            GrpcCallSender.run();
-//            RcsCommandRegistry.init(loadPackageParam);
+//            XposedClassCacher.run(loadPackageParam);
+//            GrpcCallSender.run(loadPackageParam);
+//            CommandRegistry.init(loadPackageParam);
             SmsMessageHook.run(loadPackageParam);
 
 
-            GrpcCallHelper.run(loadPackageParam);
+//            GrpcCallHelper.run(loadPackageParam);
             DeliverReport.runV240519(loadPackageParam);
             RegisterHook.runV240519(loadPackageParam);
             RcsStatusHook.runV240519(loadPackageParam);
@@ -280,10 +277,10 @@ public class RcsApplicationHook extends BaseAppHook {
             @Override public void onMessage(String message) {
                 LogUtils.show( "ReliableWebSocketClient Received onMessage: " + message);
                 // 可选：传给自定义命令分发器
-              String response = WebsocketDispatcher.handle(message);
-              if(!TextUtils.isEmpty(response)){
-                  socket.send(response);
-              }
+                String response = WebsocketDispatcher.handle(message);
+                if(!TextUtils.isEmpty(response)){
+                    socket.send(response);
+                }
             }
 
             @Override public void onClosed(String reason) {

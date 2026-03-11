@@ -27,10 +27,9 @@ public class GrpcCallHelper {
     private static final EnumMap<XpGrpcMethodEnum, Object> defaultInstanceMap = new EnumMap<>(XpGrpcMethodEnum.class);
     private static final EnumMap<XpGrpcMethodEnum, Function<ChannelRequestParams, byte[]>> requestGeneratorMap = new EnumMap<>(XpGrpcMethodEnum.class);
 
-    public static void run(XC_LoadPackage.LoadPackageParam loadPackageParam) throws Throwable {
+    public static void run(ClassLoader classLoader) throws Exception {
 
         try {
-            ClassLoader classLoader = loadPackageParam.classLoader;
             initMethodDescriptorMap(classLoader);
             initDefaultInstanceMap(classLoader);
             initRequestGeneratorMap(classLoader);

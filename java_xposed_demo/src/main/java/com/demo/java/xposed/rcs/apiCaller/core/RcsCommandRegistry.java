@@ -17,8 +17,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
  */
 
 public class RcsCommandRegistry {
-    public static void init(XC_LoadPackage.LoadPackageParam loadPackageParam) {
-        ClassLoader classLoader =loadPackageParam.classLoader;
+    public static void init(ClassLoader classLoader) {
+
         initActionHandler(classLoader);
         initInnerAction(classLoader);
         initDbQuery(classLoader);
