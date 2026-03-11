@@ -14,7 +14,7 @@ import java.util.Optional;
 public class XposedCommandRouter  extends CommandRouter {
 
 
-    static {
+    public static void initXposed() {
         registerDefaultResolver(ChannelRequestParams.class, XposedCommandRouter::buildDefaultChannelRequest);
         registerDefaultResolver(DbQueryParams.class, XposedCommandRouter::buildDbQueryParams);
     }

@@ -7,6 +7,7 @@ import com.demo.java.xposed.rcs.apiCaller.core.GrpcCallSender;
 import com.demo.java.xposed.rcs.apiCaller.core.RcsCommandRegistry;
 import com.demo.java.xposed.utils.LogUtils;
 import com.example.command.core.CommandContext;
+import com.example.messages.XposedCommandRouter;
 import com.example.messages.cache.XposedClassCacher;
 
 public class SekiroClientManager {
@@ -21,8 +22,7 @@ public class SekiroClientManager {
 
             RcsCommandRegistry.init(context.getClassLoader());
             GrpcCallSender.run();
-            CommandContext ctx = CommandContext.getInstance();
-
+            XposedCommandRouter.initXposed();
             SekiroClientInit.init(
                     "rcs",
                     context,
