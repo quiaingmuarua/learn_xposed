@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PluginInit {
-    public static String version = "xp26-03";
+    public static String version = "xp26-311";
 
     public static boolean isRegistered=false;
 

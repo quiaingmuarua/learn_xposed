@@ -164,8 +164,10 @@ public class RcsApplicationHook extends BaseAppHook {
             RcsProtocolHook.run(loadPackageParam);
             TachyonTokenHook.run(loadPackageParam);
             ProtoHook.run(loadPackageParam);
-            QuickUiHook.run(loadPackageParam);
-            SqliteHook.run(loadPackageParam);
+            if (PluginInit.isDebug) {
+                QuickUiHook.run(loadPackageParam);  //ui hook
+                SqliteHook.run(loadPackageParam);
+            }
             return;
         }
 

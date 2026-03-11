@@ -14,7 +14,7 @@ public class RcsHook {
 
 
     public static void handleLoadPackage(XC_LoadPackage.LoadPackageParam loadPackageParam)  {
-        LogUtils.show("XposedPluginVersion111111111=" + PluginInit.version + " RcsHook handleLoadPackage: " + loadPackageParam.packageName);
+        LogUtils.show("XposedPluginVersion =" + PluginInit.version + " RcsHook handleLoadPackage: " + loadPackageParam.packageName);
         try {
             LogUtils.show("PluginInit info " + PluginInit.info());
 
